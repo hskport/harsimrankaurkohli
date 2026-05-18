@@ -1,0 +1,1199 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Harsimran Kaur | Professional Vocalist & Educator</title>
+
+    <!-- Meta Tags -->
+    <meta name="description"
+        content="Portfolio of Harsimran Kaur, a certified music educator and professional vocalist specializing in Hindustani Classical, Sufi, and Bollywood.">
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@200;300;400;500&family=Cinzel+Decorative:wght@400;700&family=Cinzel:wght@400;600&family=Montserrat:wght@300;400;600&display=swap"
+        rel="stylesheet">
+
+    <!-- Styles -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        cream: '#F8EABA',
+                        dark: '#0A0604',
+                        gold: '#D4AF5A',
+                        'gold-light': '#F8EABA',
+                    },
+                    fontFamily: {
+                        body: ['"Work Sans"', 'Arial', 'sans-serif'],
+                        heading: ['"Work Sans"', 'Arial', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        :root {
+            /* Classical Palette — Vivid & Warm */
+            --bg-black-brown: #0A0604;
+            --bg-dark-espresso: #150B06;
+            --bg-walnut: #221408;
+            --bg-burnt-umber: #3A200E;
+
+            --gold-dark: #8B6914;
+            --gold-shadow: #B08A30;
+            --gold-metallic: #D4AF5A;
+            --gold-antique: #E0C06E;
+            --gold-soft: #EDD48A;
+            --gold-highlight: #F8EABA;
+
+            --cinematic-bg-gradient: linear-gradient(180deg, #0A0604 0%, #150B06 40%, #1E1108 100%);
+            --gold-glow: rgba(212, 175, 90, 0.3);
+            --texture-overlay: rgba(200, 164, 90, 0.04);
+            --deep-shadow: rgba(0, 0, 0, 0.85);
+
+            /* Mapping */
+            --gold: var(--gold-metallic);
+            --gold-light: var(--gold-highlight);
+            --cream: var(--gold-highlight);
+            --dark: var(--bg-black-brown);
+            --darker: #050302;
+            --accent-glow: var(--gold-glow);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Work Sans', sans-serif;
+            font-style: normal !important;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        body {
+            background: var(--cinematic-bg-gradient);
+            background-attachment: fixed;
+            color: var(--gold-soft);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        /* ─── Classical Ornamental Panels ─── */
+        .glass-panel {
+            background: rgba(30, 17, 8, 0.6);
+            border: 1px solid rgba(200, 164, 90, 0.12);
+            transition: border-color 0.5s ease, background 0.5s ease, box-shadow 0.5s ease;
+        }
+
+        .glass-panel:hover {
+            border-color: rgba(200, 164, 90, 0.3);
+            background: rgba(30, 17, 8, 0.8);
+            box-shadow: 0 4px 30px rgba(200, 164, 90, 0.08);
+        }
+
+        .logo-text {
+            color: var(--gold-antique);
+        }
+
+        .glow {
+            box-shadow: 0 0 40px var(--gold-glow);
+        }
+
+        /* Logo — no filters, display as-is */
+        .gold-asset {
+            filter: none;
+        }
+
+        /* ─── Typography ─── */
+        h1,
+        h2,
+        h3 {
+            font-family: 'Cinzel', serif;
+            font-weight: 400;
+            letter-spacing: 0.03em;
+            text-transform: none;
+        }
+
+        /* ─── Classical Decorative Divider ─── */
+        .section-divider {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 16px;
+        }
+
+        .section-divider::before,
+        .section-divider::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--gold-shadow), transparent);
+        }
+
+        .section-divider::before {
+            background: linear-gradient(90deg, transparent, var(--gold-shadow));
+        }
+
+        .section-divider::after {
+            background: linear-gradient(90deg, var(--gold-shadow), transparent);
+        }
+
+        /* Ornamental dot in center of dividers */
+        .ornament {
+            width: 6px;
+            height: 6px;
+            background: var(--gold-metallic);
+            transform: rotate(45deg);
+            flex-shrink: 0;
+        }
+
+        /* ─── Cinematic Loader Styles ─── */
+        :root {
+            --color-bg-dark: #0D0704;
+            --color-gold-base: #E2C18A;
+            --color-gold-light: #F3D29D;
+        }
+
+        #loader-wrapper {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: url('public/assets/cover/dskbg.png') no-repeat center center;
+            background-size: cover;
+            z-index: 10000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            perspective: 1000px;
+        }
+
+        #particles-canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 2;
+        }
+
+        .light-sweep {
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 50%;
+            height: 100%;
+            background: linear-gradient(to right, transparent, rgba(212, 175, 55, 0.03), transparent);
+            transform: skewX(-20deg);
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .spotlight {
+            position: absolute;
+            top: -10vh;
+            left: -10vw;
+            width: 60vw;
+            height: 60vh;
+            background: radial-gradient(circle at 20% 20%, rgba(249, 229, 150, 0.4) 0%, transparent 70%);
+            pointer-events: none;
+            opacity: 0;
+            mix-blend-mode: screen;
+            filter: blur(40px);
+            z-index: 1;
+        }
+
+        .tanpura-container {
+            position: absolute;
+            left: 2vw;
+            bottom: -5vh;
+            width: 55vw;
+            max-width: 700px;
+            height: 95vh;
+            opacity: 0;
+            transform: translateY(30px);
+            filter: drop-shadow(20px 20px 30px rgba(0, 0, 0, 0.9));
+            display: flex;
+            align-items: flex-end;
+        }
+
+        .tanpura-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            object-position: bottom left;
+        }
+
+        .curtain-container {
+            position: absolute;
+            right: 0;
+            top: 0;
+            width: 45vw;
+            height: 100vh;
+            opacity: 0;
+            transform-origin: top right;
+            z-index: 5;
+        }
+
+        .curtain-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: right top;
+            filter: drop-shadow(-20px 0px 30px rgba(0, 0, 0, 0.8));
+        }
+
+        .typography-container {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            z-index: 10;
+            width: 100%;
+            max-width: 800px;
+        }
+
+        .lotus-top,
+        .lotus-bottom {
+            width: 220px;
+            opacity: 0;
+            transform: scale(0.8);
+        }
+
+        .lotus-top img,
+        .lotus-bottom img {
+            width: 100%;
+            height: auto;
+            filter: drop-shadow(0 0 10px rgba(212, 175, 55, 0.3));
+        }
+
+        .lotus-top {
+            margin-bottom: -50px;
+        }
+
+        .lotus-bottom {
+            margin-top: 1rem;
+        }
+
+        .logo-hsk-wrapper {
+            position: relative;
+            margin-bottom: -100px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 550px;
+            height: 550px;
+        }
+
+        .logo-hsk-img {
+            width: 100%;
+            max-width: 550px;
+            height: auto;
+            opacity: 0;
+            transform: scale(0.9);
+            filter: drop-shadow(0px 15px 50px rgba(0, 0, 0, 0.9)) brightness(1.1);
+            z-index: 2;
+        }
+
+        .branding-text {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .name-text {
+            font-family: 'Cinzel', serif;
+            font-size: 2.5rem;
+            letter-spacing: 0.25em;
+            color: var(--color-gold-light);
+            text-transform: uppercase;
+            margin-bottom: 1.2rem;
+            text-shadow: 2px 4px 15px rgba(0, 0, 0, 0.9);
+            white-space: nowrap;
+        }
+
+        .name-text span {
+            opacity: 0;
+            display: inline-block;
+        }
+
+        .subtitle-text {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.15rem;
+            letter-spacing: 0.5em;
+            color: #a38c5b;
+            opacity: 0;
+            transform: translateY(10px);
+            text-transform: uppercase;
+        }
+
+        @media (max-width: 768px) {
+            #loader-wrapper {
+                background: url('public/assets/cover/dskbg.png') no-repeat center center;
+                background-size: cover;
+            }
+
+            .tanpura-container {
+                left: -20vw;
+                width: 55vw;
+                bottom: 0;
+                opacity: 0.12 !important;
+                z-index: 1;
+            }
+
+            .curtain-container {
+                right: -10vw;
+                width: 50vw;
+                height: 100vh;
+                opacity: 0.15 !important;
+                z-index: 1;
+            }
+
+            .curtain-container img {
+                object-position: right top;
+                object-fit: cover;
+            }
+
+            .typography-container {
+                width: 100vw;
+                z-index: 10;
+                padding: 0 24px;
+                max-width: 100%;
+            }
+
+            .logo-hsk-wrapper {
+                width: 320px;
+                height: 320px;
+                margin-bottom: -80px;
+            }
+
+            .name-text {
+                font-size: 1.5rem;
+                letter-spacing: 0.15em;
+                margin-bottom: 0.8rem;
+                white-space: normal;
+                word-break: break-word;
+                text-shadow: 2px 4px 20px rgba(0, 0, 0, 1);
+            }
+
+            .subtitle-text {
+                font-size: 0.7rem;
+                letter-spacing: 0.25em;
+            }
+
+            .lotus-top,
+            .lotus-bottom {
+                width: 140px;
+            }
+
+            .lotus-top {
+                margin-bottom: -35px;
+            }
+
+            .lotus-bottom {
+                margin-top: 0.5rem;
+            }
+
+            .vine-bg-left {
+                display: none;
+            }
+
+            /* Mobile Hero */
+            .section-title {
+                font-size: clamp(2rem, 8vw, 3.5rem);
+            }
+
+            /* Mobile Journey */
+            .milestone {
+                min-height: auto !important;
+                padding: 2rem 0 !important;
+            }
+        }
+
+        /* Extra small screens (iPhone SE, etc.) */
+        @media (max-width: 400px) {
+            .logo-hsk-wrapper {
+                width: 260px;
+                height: 260px;
+                margin-bottom: -60px;
+            }
+
+            .name-text {
+                font-size: 1.25rem;
+                letter-spacing: 0.1em;
+            }
+
+            .subtitle-text {
+                font-size: 0.6rem;
+                letter-spacing: 0.18em;
+            }
+
+            .lotus-top,
+            .lotus-bottom {
+                width: 110px;
+            }
+
+            .lotus-top {
+                margin-bottom: -25px;
+            }
+        }
+
+
+
+        #main-content {
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 1.5s ease;
+        }
+
+        .section-title {
+            font-size: clamp(3rem, 10vw, 8rem);
+            line-height: 0.9;
+            margin-bottom: 2rem;
+            color: var(--cream);
+        }
+
+        .label-text {
+            font-size: 10px;
+            text-transform: uppercase;
+            letter-spacing: 0.5em;
+            color: var(--gold);
+            margin-bottom: 1.5rem;
+            display: block;
+        }
+
+        #cursor {
+            position: fixed;
+            width: 8px;
+            height: 8px;
+            background: var(--cream);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 10000;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            mix-blend-mode: difference;
+            transition: width 0.4s cubic-bezier(0.19, 1, 0.22, 1), height 0.4s cubic-bezier(0.19, 1, 0.22, 1), background 0.4s ease;
+        }
+
+        #cursor.active {
+            width: 40px;
+            height: 40px;
+            background: transparent;
+            border: 1px solid var(--cream);
+        }
+
+        #cursor-text {
+            position: absolute;
+            white-space: nowrap;
+            pointer-events: none;
+            font-size: 8px;
+            letter-spacing: 0.2em;
+            color: var(--cream);
+            top: 50px;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        @media (hover: hover) and (pointer: fine) {
+            #cursor {
+                display: flex;
+            }
+
+            * {
+                cursor: none !important;
+            }
+        }
+
+        .reveal-up {
+            opacity: 0;
+            transform: translateY(60px);
+        }
+
+        html.lenis {
+            height: auto;
+        }
+
+        .lenis.lenis-smooth {
+            scroll-behavior: auto !important;
+        }
+
+        .lenis.lenis-stopped {
+            overflow: hidden;
+        }
+
+        .noise-overlay {
+            position: fixed;
+            inset: 0;
+            z-index: 9999;
+            pointer-events: none;
+            opacity: 0.025;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+        }
+
+        .gold-line {
+            display: block;
+            width: 60px;
+            height: 1px;
+            background: linear-gradient(90deg, var(--gold), transparent);
+        }
+
+        .nav-link {
+            position: relative;
+            color: var(--gold-soft);
+            transition: color 0.5s ease;
+        }
+
+        .nav-link:hover {
+            color: var(--gold-highlight);
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 50%;
+            width: 0;
+            height: 1px;
+            background: var(--gold);
+            transition: all 0.5s cubic-bezier(0.19, 1, 0.22, 1);
+            transform: translateX(-50%);
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        .milestone {
+            transition: opacity 0.7s ease;
+        }
+
+        /* ─── Ornamental Card Styles ─── */
+        .ornamental-card {
+            position: relative;
+            background: rgba(21, 11, 6, 0.4);
+            border: 1px solid rgba(212, 175, 90, 0.15);
+            padding: 3rem 2rem;
+            transition: all 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
+            overflow: hidden;
+        }
+
+        .ornamental-card::before,
+        .ornamental-card::after {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            border-color: var(--gold-metallic);
+            border-style: solid;
+            opacity: 0.3;
+            transition: all 0.6s ease;
+        }
+
+        .ornamental-card::before {
+            top: 10px;
+            left: 10px;
+            border-width: 1px 0 0 1px;
+        }
+
+        .ornamental-card::after {
+            bottom: 10px;
+            right: 10px;
+            border-width: 0 1px 1px 0;
+        }
+
+        .ornamental-card:hover {
+            background: rgba(30, 17, 8, 0.7);
+            border-color: rgba(212, 175, 90, 0.4);
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
+        }
+
+        .ornamental-card:hover::before,
+        .ornamental-card:hover::after {
+            opacity: 0.8;
+            width: 30px;
+            height: 30px;
+        }
+
+        .service-icon {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            display: inline-block;
+            background: linear-gradient(135deg, var(--gold-antique), var(--gold-dark));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            opacity: 0.8;
+        }
+
+        .service-title {
+            font-family: 'Cinzel', serif;
+            letter-spacing: 0.1em;
+            margin-bottom: 1.5rem;
+            color: var(--gold-highlight);
+        }
+
+        .service-description {
+            font-family: 'Work Sans', sans-serif;
+            font-weight: 300;
+            line-height: 1.8;
+            color: rgba(248, 234, 186, 0.7);
+        }
+
+        /* ─── Global Floating Particles (persist on entire site) ─── */
+    </style>
+</head>
+
+<body class="overflow-hidden">
+
+    <!-- CINEMATIC LOADING SCREEN -->
+    <div id="loader-wrapper">
+        <canvas id="particles-canvas"></canvas>
+        <div class="light-sweep" id="light-sweep"></div>
+        <div class="spotlight" id="spotlight"></div>
+
+        <div class="tanpura-container" id="tanpura">
+            <img src="public/assets/cover/tanpura.png" alt="Ornate Tanpura" />
+        </div>
+
+        <div class="curtain-container" id="curtains">
+            <img src="public/assets/cover/hsk_Fabric.png" alt="Velvet Fabric" />
+        </div>
+
+        <div class="typography-container" id="typography">
+            <div class="lotus-top" id="lotus-top">
+                <img src="public/assets/cover/lotus.png" alt="Lotus Top" />
+            </div>
+            <div class="logo-hsk-wrapper" id="logo-wrapper">
+                <img src="public/assets/cover/coverlogo.png" alt="HSK Logo" class="logo-hsk-img" id="logo" />
+            </div>
+            <div class="branding-text">
+                <div class="name-text" id="nameText">Harsimran Kaur Kohli</div>
+                <div class="subtitle-text" id="subtitleText">SINGER & MUSIC EDUCATOR</div>
+            </div>
+            <div class="lotus-bottom" id="lotus-bottom">
+                <img src="public/assets/cover/lotus_bottom.png" alt="Lotus Bottom" />
+            </div>
+        </div>
+    </div>
+
+    <!-- MAIN PORTFOLIO CONTENT -->
+    <div id="main-content">
+        <canvas id="global-particles"></canvas>
+        <div class="noise-overlay"></div>
+        <div id="cursor">
+            <span id="cursor-text"></span>
+        </div>
+
+        <!-- ─── Cinematic Navbar ─── -->
+        <nav id="navbar"
+            class="fixed top-0 left-0 w-full z-[10000] px-8 md:px-16 py-8 flex justify-between items-start opacity-0">
+            <div class="hidden md:flex gap-10">
+                <a href="#hero" class="nav-link text-[11px] uppercase tracking-[0.3em]">Home</a>
+                <a href="#about" class="nav-link text-[11px] uppercase tracking-[0.3em]">About</a>
+                <a href="#services" class="nav-link text-[11px] uppercase tracking-[0.3em]">Services</a>
+                <a href="#contact" class="nav-link text-[11px] uppercase tracking-[0.3em]">Contact</a>
+            </div>
+
+            <div class="hidden md:flex gap-8 items-center">
+                <a href="https://instagram.com/harsimrankohlimusic" target="_blank"
+                    class="text-gold-light/60 hover:text-gold transition-colors"><svg width="18" height="18"
+                        viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                        <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                        <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+                    </svg></a>
+                <a href="https://youtube.com/@hskschoolofmusic" target="_blank"
+                    class="text-gold-light/60 hover:text-gold transition-colors"><svg width="18" height="18"
+                        viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path
+                            d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33z">
+                        </path>
+                        <polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02"></polygon>
+                    </svg></a>
+
+                <a href="#" class="text-gold-light/60 hover:text-gold transition-colors"><svg width="18" height="18"
+                        viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path>
+                    </svg></a>
+            </div>
+
+            <button class="md:hidden z-[101] flex flex-col gap-[8px] items-end p-2" id="menu-toggle">
+                <div class="w-10 h-[1px] bg-cream line-1 transition-all duration-500"></div>
+                <div class="w-6 h-[1px] bg-cream/60 line-2 transition-all duration-500"></div>
+            </button>
+        </nav>
+
+        <!-- ─── Mobile Menu ─── -->
+        <div class="fixed inset-0 z-[99] bg-dark flex flex-col justify-center px-12 translate-y-[-100%] transition-transform duration-1000 ease-[cubic-bezier(0.76,0,0.24,1)]"
+            id="mobile-menu">
+            <div class="flex flex-col gap-12 text-center md:text-left">
+                <a href="#hero"
+                    class="text-4xl font-light text-gold-light/90 mobile-link flex items-center justify-center gap-4">
+                    <span class="text-xs text-gold/30 tracking-widest">01</span> Home
+                </a>
+                <a href="#about"
+                    class="text-4xl font-light text-gold-light/90 mobile-link flex items-center justify-center gap-4">
+                    <span class="text-xs text-gold/30 tracking-widest">02</span> Journey
+                </a>
+                <a href="#services"
+                    class="text-4xl font-light text-gold-light/90 mobile-link flex items-center justify-center gap-4">
+                    <span class="text-xs text-gold/30 tracking-widest">03</span> Services
+                </a>
+                <a href="#contact"
+                    class="text-4xl font-light text-gold-light/90 mobile-link flex items-center justify-center gap-4">
+                    <span class="text-xs text-gold/30 tracking-widest">04</span> Connect
+                </a>
+            </div>
+        </div>
+
+        <!-- ─── Hero Section ─── -->
+        <section id="hero" class="relative h-screen w-full flex items-start md:items-center justify-center overflow-hidden bg-dark pt-[15vh] md:pt-0">
+            <div class="absolute inset-0 z-0">
+                <img src="public/assets/imgnew/heroblack.png" class="w-full h-full object-cover hidden md:block" alt="Hero Background">
+                <img src="public/assets/imgnew/heroblackmbl.png" class="w-full h-full object-cover object-right md:hidden" alt="Hero Background Mobile">
+
+            </div>
+
+            <div class="relative z-10 text-center px-6">
+                <div id="hero-logo" class="mb-6 md:mb-12 opacity-0 translate-y-10">
+                    <img src="public/assets/logo/HSK.png" class="h-24 md:h-64 mx-auto premium-logo gold-asset"
+                        alt="Logo">
+                </div>
+                <h1 id="hero-title"
+                    class="text-gold-light text-[clamp(2.5rem,6vw,5.5rem)] font-light uppercase tracking-[0.3em] md:tracking-[0.5em] leading-tight mb-4 opacity-0 translate-y-10"
+                    style="font-family:'Cinzel',serif">
+                    Harsimran Kaur
+                </h1>
+                <div id="hero-footer" class="opacity-0 translate-y-10">
+                    <p class="text-gold text-[11px] md:text-[13px] uppercase tracking-[0.4em] font-medium">
+                        Singer & Music Educator
+                    </p>
+                </div>
+            </div>
+
+
+        </section>
+
+        <!-- ─── The Journey Section ─── -->
+        <section id="about" class="relative bg-dark py-16 md:py-32 px-4 md:px-16 lg:px-24">
+            <div class="section-divider mb-12 md:mb-20">
+                <div class="ornament"></div>
+            </div>
+            <div class="flex flex-col md:flex-row items-start gap-12 md:gap-16 lg:gap-24 max-w-7xl mx-auto">
+                <div class="md:w-[45%] md:h-screen md:sticky md:top-0 flex items-center justify-center py-8 md:py-0">
+                    <div class="relative w-full max-w-sm md:max-w-none aspect-[3/4] overflow-hidden rounded-[2px]">
+                        <img src="public/assets/imgnew/IMG_2847.JPG.jpeg" alt="Harsimran Kaur Portrait"
+                            class="w-full h-full object-cover" id="journey-image">
+                        <div class="absolute inset-0 bg-gradient-to-t from-dark via-dark/20 to-transparent"></div>
+                        <div class="absolute bottom-8 left-8 right-8 text-center">
+                            <p class="text-[10px] uppercase tracking-[0.3em] text-gold-light/50 mb-2">Portrait</p>
+                            <p class="text-xl text-gold-light">Harsimran Kaur</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="md:w-[55%] relative z-10 pt-16 md:pt-32">
+                    <div class="mb-16 md:mb-32 text-center md:text-left">
+                        <p class="text-[10px] font-semibold uppercase tracking-[0.4em] text-gold mb-4">Biography</p>
+                        <h2 class="text-[clamp(2.5rem,6vw,5.5rem)] text-gold-light leading-[1]">The Journey</h2>
+                    </div>
+                    <div class="space-y-12">
+                        <div
+                            class="milestone min-h-[80vh] flex flex-col justify-center items-center text-center md:items-start md:text-left py-16 md:py-10 opacity-15 transition-opacity duration-700">
+                            <div class="flex items-center justify-center md:justify-start gap-4 mb-8 w-full">
+                                <span class="text-gold text-[11px] font-semibold tracking-[0.4em] uppercase">Roots & Training</span>
+                                <div class="h-[1px] w-12 bg-gradient-to-r from-gold/40 to-transparent hidden md:block"></div>
+                            </div>
+                            <h3 class="text-4xl md:text-6xl text-gold-light mb-10 font-light uppercase tracking-[0.15em] leading-[1.1] max-w-lg">
+                                Classical Foundation</h3>
+                            <p class="text-gold-light/60 font-light text-base md:text-lg leading-relaxed mb-16 max-w-md">
+                                Trained in the rigorous Kirana Gharana tradition, her journey began with deep-rooted
+                                discipline in Hindustani Classical music, mastering the nuances of Raga and Thumri.
+                            </p>
+                            <div class="relative inline-flex flex-col items-center">
+                                <div class="flex items-baseline gap-2 mb-2">
+                                    <span class="text-6xl md:text-8xl text-gold font-light tracking-tighter counter" data-target="15">0</span>
+                                    <span class="text-gold text-3xl font-extralight">+</span>
+                                </div>
+                                <span class="text-gold/40 text-[9px] uppercase tracking-[0.4em] font-medium">Years of Sadhana</span>
+                                <div class="absolute inset-0 bg-gold/5 blur-3xl rounded-full -z-10 scale-150"></div>
+                            </div>
+                        </div>
+
+                        <div
+                            class="milestone min-h-[80vh] flex flex-col justify-center items-center text-center md:items-start md:text-left py-16 md:py-10 opacity-15 transition-opacity duration-700">
+                            <div class="flex items-center justify-center md:justify-start gap-4 mb-8 w-full">
+                                <span class="text-gold text-[11px] font-semibold tracking-[0.4em] uppercase">Teaching Excellence</span>
+                                <div class="h-[1px] w-12 bg-gradient-to-r from-gold/40 to-transparent hidden md:block"></div>
+                            </div>
+                            <h3 class="text-4xl md:text-6xl text-gold-light mb-10 font-light uppercase tracking-[0.15em] leading-[1.1] max-w-lg">
+                                Nurturing Talent</h3>
+                            <p class="text-gold-light/60 font-light text-base md:text-lg leading-relaxed mb-16 max-w-md">
+                                As a dedicated educator, she has mentored hundreds of students globally, preserving the
+                                sanctity of Indian music while making it accessible to the next generation.
+                            </p>
+                            <div class="relative inline-flex flex-col items-center">
+                                <div class="flex items-baseline gap-2 mb-2">
+                                    <span class="text-6xl md:text-8xl text-gold font-light tracking-tighter counter" data-target="500">0</span>
+                                    <span class="text-gold text-3xl font-extralight">+</span>
+                                </div>
+                                <span class="text-gold/40 text-[9px] uppercase tracking-[0.4em] font-medium">Students Mentored</span>
+                                <div class="absolute inset-0 bg-gold/5 blur-3xl rounded-full -z-10 scale-150"></div>
+                            </div>
+                        </div>
+
+                        <!-- Milestone 3 -->
+                        <div
+                            class="milestone min-h-[80vh] flex flex-col justify-center items-center text-center md:items-start md:text-left py-16 md:py-10 opacity-15 transition-opacity duration-700">
+                            <div class="flex items-center justify-center md:justify-start gap-4 mb-8 w-full">
+                                <span class="text-gold text-[11px] font-semibold tracking-[0.4em] uppercase">Stage & Spotlight</span>
+                                <div class="h-[1px] w-12 bg-gradient-to-r from-gold/40 to-transparent hidden md:block"></div>
+                            </div>
+                            <h3 class="text-4xl md:text-6xl text-gold-light mb-10 font-light uppercase tracking-[0.15em] leading-[1.1] max-w-lg">
+                                A Versatile Vocalist</h3>
+                            <p class="text-gold-light/60 font-light text-base md:text-lg leading-relaxed mb-16 max-w-md">
+                                From soulful Sufi nights to high-energy Bollywood performances, she brings an electric,
+                                commanding presence to every stage she graces—blending classical discipline with
+                                contemporary showmanship.
+                            </p>
+                            <div class="relative inline-flex flex-col items-center">
+                                <div class="flex items-baseline gap-2 mb-2">
+                                    <span class="text-6xl md:text-8xl text-gold font-light tracking-tighter counter" data-target="100">0</span>
+                                    <span class="text-gold text-3xl font-extralight">+</span>
+                                </div>
+                                <span class="text-gold/40 text-[9px] uppercase tracking-[0.4em] font-medium">Live Concerts</span>
+                                <div class="absolute inset-0 bg-gold/5 blur-3xl rounded-full -z-10 scale-150"></div>
+                            </div>
+                        </div>
+                        <!-- Additional milestones can be added back here -->
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="services" class="bg-dark py-24 md:py-40 px-4 md:px-16 lg:px-24 relative overflow-hidden">
+            <!-- Background Decoration -->
+            <div class="absolute top-0 left-0 w-full h-full opacity-[0.03] pointer-events-none">
+                <div class="absolute top-[-10%] right-[-10%] w-[60%] h-[60%] border border-gold rounded-full"></div>
+                <div class="absolute bottom-[-15%] left-[-10%] w-[50%] h-[50%] border border-gold rounded-full"></div>
+            </div>
+
+            <div class="max-w-7xl mx-auto relative z-10">
+                <div class="section-divider mb-16 md:mb-24">
+                    <div class="ornament"></div>
+                </div>
+                <div class="mb-16 md:mb-28 text-center">
+                    <p class="text-[11px] font-medium uppercase tracking-[0.6em] text-gold/60 mb-6">Artistic Offerings</p>
+                    <h2 class="text-[clamp(2.5rem,6vw,5rem)] text-gold-light leading-[1.1] mb-6">The Services</h2>
+                    <div class="w-24 h-[1px] bg-gradient-to-r from-transparent via-gold/40 to-transparent mx-auto"></div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12">
+                    <!-- Card 1 -->
+                    <div class="ornamental-card group">
+                        <div class="service-icon group-hover:scale-110 transition-transform duration-500">
+                            <span class="font-serif">𝄢</span>
+                        </div>
+                        <h3 class="service-title text-xl">Live Recitals</h3>
+                        <p class="service-description text-sm">
+                            Immersive musical experiences spanning soulful Sufi nights, high-energy Bollywood galas, and serene Classical recitals. Each performance is a curated journey tailored for grand stages and intimate gatherings alike.
+                        </p>
+                        <div class="mt-8 flex items-center gap-3 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                            <div class="w-8 h-[1px] bg-gold/40"></div>
+                            <span class="text-[9px] uppercase tracking-[0.3em] text-gold/80">Book Concert</span>
+                        </div>
+                    </div>
+
+                    <!-- Card 2 -->
+                    <div class="ornamental-card group">
+                        <div class="service-icon group-hover:scale-110 transition-transform duration-500">
+                            <span class="font-serif">𝄀𝄞</span>
+                        </div>
+                        <h3 class="service-title text-xl">Vocal Mentorship</h3>
+                        <p class="service-description text-sm">
+                            Rooted in the ancient Guru-Shishya Parampara, offering certified training in Hindustani Classical, Sufi, and Bollywood. Empowering voices through a blend of traditional discipline and modern vocal pedagogy.
+                        </p>
+                        <div class="mt-8 flex items-center gap-3 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                            <div class="w-8 h-[1px] bg-gold/40"></div>
+                            <span class="text-[9px] uppercase tracking-[0.3em] text-gold/80">Join Academy</span>
+                        </div>
+                    </div>
+
+                    <!-- Card 3 -->
+                    <div class="ornamental-card group">
+                        <div class="service-icon group-hover:scale-110 transition-transform duration-500">
+                            <span class="font-serif">ॐ</span>
+                        </div>
+                        <h3 class="service-title text-xl">Studio & Sacred</h3>
+                        <p class="service-description text-sm">
+                            Professional vocal collaborations for devotional albums, shabad kirtans, and original scores. Providing high-fidelity vocal delivery for sacred projects and contemporary artistic compositions.
+                        </p>
+                        <div class="mt-8 flex items-center gap-3 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                            <div class="w-8 h-[1px] bg-gold/40"></div>
+                            <span class="text-[9px] uppercase tracking-[0.3em] text-gold/80">Collaborate</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+
+
+        <!-- ─── Contact Section ─── -->
+        <section id="contact" class="bg-dark py-16 md:py-32 px-4 md:px-16 lg:px-24">
+            <div class="section-divider mb-12 md:mb-16">
+                <div class="ornament"></div>
+            </div>
+            <div class="max-w-4xl mx-auto">
+                <div class="mb-12 md:mb-16 text-center">
+                    <p class="text-[10px] font-semibold uppercase tracking-[0.4em] text-gold mb-4">Enquiries</p>
+                    <h2 class="text-[clamp(2rem,5vw,4rem)] text-gold-light leading-[1]">Get in Touch</h2>
+                </div>
+                <div class="flex flex-col items-center text-center space-y-12">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-24">
+                        <div class="space-y-8">
+                            <div>
+                                <p class="text-[10px] uppercase tracking-[0.3em] text-gold mb-2">Email</p>
+                                <a href="mailto:hsk@harsimrankaurkohli.com"
+                                    class="text-gold-light font-light text-sm hover:text-gold transition-colors">hsk@harsimrankaurkohli.com</a>
+                            </div>
+                            <div>
+                                <p class="text-[10px] uppercase tracking-[0.3em] text-gold mb-2">Call / WhatsApp</p>
+                                <div class="flex flex-col gap-2">
+                                    <a href="tel:+919999660796"
+                                        class="text-gold-light font-light text-sm hover:text-gold transition-colors">+91 99996 60796</a>
+                                    <a href="tel:+919322332148"
+                                        class="text-gold-light font-light text-sm hover:text-gold transition-colors">+91 93223 32148</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="space-y-8">
+                            <div>
+                                <p class="text-[10px] uppercase tracking-[0.3em] text-gold mb-2">Follow</p>
+                                <div class="flex justify-center md:justify-start gap-6">
+                                    <a href="https://instagram.com/harsimrankohlimusic" target="_blank"
+                                        class="text-gold-light/70 hover:text-gold transition-colors text-sm">Instagram</a>
+                                    <a href="https://youtube.com/@hskschoolofmusic" target="_blank"
+                                        class="text-gold-light/70 hover:text-gold transition-colors text-sm">YouTube</a>
+                                    <a href="#"
+                                        class="text-gold-light/70 hover:text-gold transition-colors text-sm">Facebook</a>
+                                </div>
+                            </div>
+                            <div>
+                                <p class="text-[10px] uppercase tracking-[0.3em] text-gold mb-2">Location</p>
+                                <p class="text-gold-light/80 font-light text-sm">Available for events worldwide</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="bg-darker py-12 md:py-20 px-6 md:px-8 border-t border-white/5">
+            <div class="max-w-7xl mx-auto flex flex-col gap-6 items-center">
+                <img src="public/assets/logo/HSK.png" class="h-10 md:h-12 premium-logo gold-asset" alt="Logo">
+                <p
+                    class="text-[9px] md:text-[10px] uppercase tracking-[0.3em] md:tracking-[0.5em] text-gold-light/60 text-center">
+                    © 2026 Harsimran Kaur Kohli</p>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.19/bundled/lenis.min.js"></script>
+
+    <script>
+        // ─── Cinematic Loader Logic ───
+        document.addEventListener("DOMContentLoaded", () => {
+            // Always start from hero section
+            if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
+            window.scrollTo(0, 0);
+            const nameContainer = document.getElementById('nameText');
+            const nameString = nameContainer.innerText;
+            nameContainer.innerHTML = '';
+            nameString.split('').forEach(char => {
+                const span = document.createElement('span');
+                span.innerText = char === ' ' ? '\u00A0' : char;
+                nameContainer.appendChild(span);
+            });
+
+            const tl = gsap.timeline({
+                onComplete: () => {
+                    gsap.set("#main-content", { visibility: "visible" });
+                    gsap.to("#main-content", { opacity: 1, duration: 1.5 });
+                    gsap.to("#global-particles", { opacity: 1, duration: 2 });
+                    gsap.to("#loader-wrapper", {
+                        opacity: 0,
+                        duration: 1,
+                        onComplete: () => {
+                            document.getElementById('loader-wrapper').style.display = 'none';
+                            document.body.classList.remove('overflow-hidden');
+                            initAnimations(); // Start portfolio animations
+                        }
+                    });
+                }
+            });
+
+            gsap.set(".lotus-top, .lotus-bottom", { opacity: 0, scale: 0.8, filter: "blur(10px)" });
+
+            tl.to("#spotlight", { duration: 1.5, opacity: 1, scale: 1.2, ease: "power2.inOut" }, 0.3)
+                .to("#tanpura", { duration: 1.5, opacity: 1, y: 0, ease: "power2.out" }, 0.3)
+                .to("#curtains", { duration: 1.5, opacity: 1, ease: "power2.inOut" }, 0.5)
+                .to("#lotus-top", { duration: 1, opacity: 1, scale: 1, filter: "blur(0px)", ease: "back.out(1.2)" }, 0.8)
+                .to("#logo", { duration: 1, opacity: 1, scale: 1, ease: "power3.out" }, 1.0)
+                .to("#nameText span", { duration: 0.5, opacity: 1, y: 0, stagger: 0.02, ease: "power2.out" }, 1.2)
+                .to("#subtitleText", { duration: 0.8, opacity: 1, y: 0, ease: "power2.out" }, 1.8)
+                .to("#lotus-bottom", { duration: 1, opacity: 1, scale: 1, filter: "blur(0px)", ease: "back.out(1.2)" }, 1.5);
+
+            // Exit Sequence
+            tl.add("exit", 3.5);
+            tl.to("#curtains", { duration: 2, x: "100%", skewX: -5, opacity: 0, ease: "power3.inOut" }, "exit")
+                .to("#tanpura", { duration: 1.5, x: "-20vw", opacity: 0, ease: "power3.in" }, "exit")
+                .to("#typography", { duration: 1.2, scale: 1.2, opacity: 0, ease: "power2.in" }, "exit")
+                .to("#spotlight", { duration: 1.5, opacity: 1, scale: 3, backgroundColor: "rgba(255, 255, 255, 0.8)", ease: "power4.in" }, "exit");
+
+            // Background loops
+            gsap.to(".lotus-top, .lotus-bottom", { duration: 3, y: "-=10", yoyo: true, repeat: -1, ease: "sine.inOut" }, 4.5);
+            gsap.to("#light-sweep", { duration: 8, left: "200%", repeat: -1, ease: "none", delay: 1 });
+
+            // Particles
+            const canvas = document.getElementById('particles-canvas');
+            const ctx = canvas.getContext('2d');
+            let particles = [];
+            function resizeCanvas() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
+            window.addEventListener('resize', resizeCanvas);
+            resizeCanvas();
+            class Particle {
+                constructor() {
+                    this.x = Math.random() * canvas.width;
+                    this.y = Math.random() * canvas.height;
+                    this.size = Math.random() * 1.5 + 0.5;
+                    this.speedX = Math.random() * 0.5 - 0.25;
+                    this.speedY = Math.random() * 0.5 - 0.25;
+                    this.opacity = Math.random() * 0.5 + 0.1;
+                }
+                update() {
+                    this.x += this.speedX; this.y += this.speedY;
+                    if (this.x > canvas.width) this.x = 0; else if (this.x < 0) this.x = canvas.width;
+                    if (this.y > canvas.height) this.y = 0; else if (this.y < 0) this.y = canvas.height;
+                }
+                draw() {
+                    ctx.fillStyle = `rgba(212, 175, 55, ${this.opacity})`;
+                    ctx.beginPath(); ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2); ctx.fill();
+                }
+            }
+            function initParticles() { for (let i = 0; i < 80; i++) { particles.push(new Particle()); } }
+            function animateParticles() {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                particles.forEach(p => { p.update(); p.draw(); });
+                requestAnimationFrame(animateParticles);
+            }
+            initParticles(); animateParticles();
+
+            // ─── Global Floating Particles (persist on entire site) ───
+            const globalCanvas = document.getElementById('global-particles');
+            const gCtx = globalCanvas.getContext('2d');
+            let globalParticles = [];
+            function resizeGlobalCanvas() { globalCanvas.width = window.innerWidth; globalCanvas.height = window.innerHeight; }
+            window.addEventListener('resize', resizeGlobalCanvas);
+            resizeGlobalCanvas();
+
+            class GlobalParticle {
+                constructor() {
+                    this.x = Math.random() * globalCanvas.width;
+                    this.y = Math.random() * globalCanvas.height;
+                    this.size = Math.random() * 1.8 + 0.3;
+                    this.speedX = (Math.random() - 0.5) * 0.3;
+                    this.speedY = (Math.random() - 0.5) * 0.3;
+                    this.opacity = Math.random() * 0.35 + 0.05;
+                    this.pulse = Math.random() * Math.PI * 2;
+                }
+                update() {
+                    this.x += this.speedX;
+                    this.y += this.speedY;
+                    this.pulse += 0.01;
+                    if (this.x > globalCanvas.width) this.x = 0;
+                    else if (this.x < 0) this.x = globalCanvas.width;
+                    if (this.y > globalCanvas.height) this.y = 0;
+                    else if (this.y < 0) this.y = globalCanvas.height;
+                }
+                draw() {
+                    const alpha = this.opacity * (0.6 + 0.4 * Math.sin(this.pulse));
+                    gCtx.fillStyle = `rgba(200, 164, 90, ${alpha})`;
+                    gCtx.beginPath();
+                    gCtx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                    gCtx.fill();
+                }
+            }
+
+            function initGlobalParticles() {
+                for (let i = 0; i < 50; i++) { globalParticles.push(new GlobalParticle()); }
+            }
+            function animateGlobalParticles() {
+                gCtx.clearRect(0, 0, globalCanvas.width, globalCanvas.height);
+                globalParticles.forEach(p => { p.update(); p.draw(); });
+                requestAnimationFrame(animateGlobalParticles);
+            }
+            initGlobalParticles();
+            animateGlobalParticles();
+        });
+
+        // ─── Portfolio Animations ───
+        function initAnimations() {
+            gsap.registerPlugin(ScrollTrigger);
+
+            const heroTl = gsap.timeline();
+            heroTl.to('#hero-logo', { opacity: 1, y: 0, duration: 1.5, ease: 'power3.out' })
+                .to('#hero-title', { opacity: 1, y: 0, duration: 1.8, ease: 'power4.out' }, '-=1.2')
+                .to('#hero-footer', { opacity: 1, y: 0, duration: 1.2, ease: 'power2.out' }, '-=0.8')
+                .to('#navbar', { opacity: 1, duration: 1.2 }, '-=1.5');
+
+            gsap.utils.toArray('.milestone').forEach(el => {
+                const counter = el.querySelector('.counter');
+                const target = counter ? parseInt(counter.getAttribute('data-target')) : 0;
+                gsap.to(el, {
+                    opacity: 1,
+                    scrollTrigger: {
+                        trigger: el,
+                        start: "top 80%",
+                        onEnter: () => {
+                            if (counter) gsap.to(counter, { innerText: target, duration: 2, snap: { innerText: 1 } });
+                        }
+                    }
+                });
+            });
+
+            // Lenis
+            const lenis = new Lenis({ duration: 1.2 });
+            function raf(time) { lenis.raf(time); requestAnimationFrame(raf); }
+            requestAnimationFrame(raf);
+
+            // Cursor
+            const cursor = document.getElementById('cursor');
+            window.addEventListener('mousemove', (e) => {
+                gsap.to(cursor, { x: e.clientX, y: e.clientY, duration: 0.1 });
+            });
+        }
+    </script>
+</body>
+
+</html>
