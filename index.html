@@ -693,12 +693,18 @@
         </div>
 
         <div class="typography-container" id="typography">
+            <div class="lotus-top" id="lotus-top">
+                <img src="public/assets/cover/lotus.png" alt="Lotus Top" />
+            </div>
             <div class="logo-hsk-wrapper" id="logo-wrapper">
                 <img src="public/assets/cover/coverlogo.png" alt="HSK Logo" class="logo-hsk-img" id="logo" />
             </div>
             <div class="branding-text">
                 <div class="name-text" id="nameText">Harsimran Kohli</div>
                 <div class="subtitle-text" id="subtitleText">SINGER & MUSIC EDUCATOR</div>
+            </div>
+            <div class="lotus-bottom" id="lotus-bottom">
+                <img src="public/assets/cover/lotus_bottom.png" alt="Lotus Bottom" />
             </div>
         </div>
     </div>
@@ -1101,6 +1107,7 @@
             });
 
             // Set initial state for typography parts
+            gsap.set(".lotus-top, .lotus-bottom", { opacity: 0, scale: 0.8, filter: "blur(10px)" });
             gsap.set("#logo", { opacity: 0, scale: 0.8, filter: "blur(5px)" });
             gsap.set(".name-char", { opacity: 0, y: 15 });
             gsap.set("#subtitleText", { opacity: 0, y: 10 });
@@ -1108,20 +1115,23 @@
             tl.to("#spotlight", { duration: 2, opacity: 1, scale: 1.1, ease: "power2.inOut" }, 0.2)
                 .to("#tanpura", { duration: 2, opacity: 1, y: 0, ease: "power2.out" }, 0.2)
                 .to("#curtains", { duration: 2, opacity: 1, ease: "power2.inOut" }, 0.4)
-                .to("#logo", { duration: 1.2, opacity: 1, scale: 1, filter: "blur(0px)", ease: "power3.out" }, 0.6)
+                .to("#lotus-top", { duration: 1.2, opacity: 1, scale: 1, filter: "blur(0px)", ease: "back.out(1.2)" }, 0.6)
+                .to("#logo", { duration: 1.2, opacity: 1, scale: 1, filter: "blur(0px)", ease: "power3.out" }, 0.8)
                 .to(".name-char", { duration: 0.6, opacity: 1, y: 0, stagger: 0.02, ease: "power2.out" }, 1.0)
-                .to("#subtitleText", { duration: 0.8, opacity: 1, y: 0, ease: "power2.out" }, 1.4);
+                .to("#subtitleText", { duration: 0.8, opacity: 1, y: 0, ease: "power2.out" }, 1.4)
+                .to("#lotus-bottom", { duration: 1.2, opacity: 1, scale: 1, filter: "blur(0px)", ease: "back.out(1.2)" }, 1.2);
 
-            // Exit Sequence (Subtle, Cinematic Dissolve Cross-fade)
+            // Exit Sequence (Subtle, Cinematic Dissolve Cross-fade with Theatrical Curtain/Tanpura Opening)
             tl.add("exit", 3.2);
-            tl.to("#main-content", { duration: 1.8, visibility: "visible", opacity: 1, ease: "power2.inOut" }, "exit")
-                .to("#curtains", { duration: 1.8, x: "15vw", opacity: 0, ease: "power3.inOut" }, "exit")
-                .to("#tanpura", { duration: 1.5, x: "-10vw", opacity: 0, ease: "power3.in" }, "exit")
-                .to("#typography", { duration: 1.5, scale: 0.96, filter: "blur(8px)", opacity: 0, ease: "power3.inOut" }, "exit")
-                .to("#spotlight", { duration: 1.8, opacity: 0, scale: 1.5, ease: "power2.inOut" }, "exit")
-                .to("#loader-wrapper", { duration: 1.8, opacity: 0, ease: "power2.inOut" }, "exit");
+            tl.to("#main-content", { duration: 2, visibility: "visible", opacity: 1, ease: "power2.inOut" }, "exit")
+                .to("#curtains", { duration: 2, x: "100vw", skewX: -5, opacity: 0, ease: "power3.inOut" }, "exit")
+                .to("#tanpura", { duration: 1.8, x: "-60vw", opacity: 0, ease: "power3.inOut" }, "exit")
+                .to("#typography", { duration: 1.8, scale: 0.95, filter: "blur(8px)", opacity: 0, ease: "power3.inOut" }, "exit")
+                .to("#spotlight", { duration: 2, opacity: 0, scale: 1.5, ease: "power2.inOut" }, "exit")
+                .to("#loader-wrapper", { duration: 2, opacity: 0, ease: "power2.inOut" }, "exit");
 
             // Background loops
+            gsap.to(".lotus-top, .lotus-bottom", { duration: 3, y: "-=10", yoyo: true, repeat: -1, ease: "sine.inOut" }, 4.5);
             gsap.to("#light-sweep", { duration: 8, left: "200%", repeat: -1, ease: "none", delay: 1 });
 
             // Particles
