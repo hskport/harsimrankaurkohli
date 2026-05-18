@@ -1,0 +1,1129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HSK Cinematic Preloader Concepts & Previews</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Montserrat:wght@200;300;400;500;600&family=Work+Sans:wght@200;300;400;500&display=swap" rel="stylesheet">
+    
+    <!-- GSAP for animations -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+
+    <style>
+        :root {
+            --color-dark: #0a0a0a;
+            --color-darker: #050505;
+            --color-gold: #d4af37;
+            --color-gold-light: #f3e5ab;
+            --color-cream: #faf6ee;
+            --font-cinzel: 'Cinzel', serif;
+            --font-montserrat: 'Montserrat', sans-serif;
+            --font-work: 'Work Sans', sans-serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: var(--color-darker);
+            color: var(--color-cream);
+            font-family: var(--font-work);
+            overflow: hidden;
+            width: 100vw;
+            height: 100vh;
+        }
+
+        /* ─── FLOATING CONTROLS BAR ─── */
+        #controls-bar {
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 100000;
+            background: rgba(10, 10, 10, 0.75);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border: 1px solid rgba(212, 175, 55, 0.25);
+            padding: 10px 24px;
+            border-radius: 40px;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.05);
+        }
+
+        .control-label {
+            font-family: var(--font-montserrat);
+            font-size: 10px;
+            letter-spacing: 0.2em;
+            color: var(--color-gold-light);
+            text-transform: uppercase;
+            font-weight: 500;
+            margin-right: 8px;
+            border-right: 1px solid rgba(212, 175, 55, 0.2);
+            padding-right: 16px;
+        }
+
+        .btn-option {
+            background: transparent;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: rgba(250, 246, 238, 0.6);
+            padding: 8px 16px;
+            font-size: 10px;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            font-family: var(--font-montserrat);
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.4s ease;
+        }
+
+        .btn-option:hover {
+            border-color: rgba(212, 175, 55, 0.5);
+            color: var(--color-gold-light);
+            background: rgba(212, 175, 55, 0.05);
+        }
+
+        .btn-option.active {
+            border-color: var(--color-gold);
+            color: #0a0a0a;
+            background: var(--color-gold);
+            font-weight: 600;
+            box-shadow: 0 0 15px rgba(212, 175, 55, 0.3);
+        }
+
+        .btn-replay {
+            background: rgba(212, 175, 55, 0.1);
+            border: 1px dashed var(--color-gold);
+            color: var(--color-gold-light);
+            padding: 8px 20px;
+            font-size: 10px;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            font-family: var(--font-montserrat);
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .btn-replay:hover {
+            background: var(--color-gold);
+            color: #0a0a0a;
+            border-style: solid;
+            box-shadow: 0 0 15px rgba(212, 175, 55, 0.4);
+        }
+
+        /* ─── REAL PORTFOLIO PREVIEW BACKGROUND (BEHIND LOADERS) ─── */
+        #behind-content {
+            position: absolute;
+            inset: 0;
+            z-index: 1;
+            background: radial-gradient(circle at 50% 30%, #151515 0%, #080808 100%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: transform 1.5s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        #behind-content.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .hero-mock-tag {
+            font-family: var(--font-montserrat);
+            font-size: 11px;
+            letter-spacing: 0.5em;
+            color: var(--color-gold);
+            text-transform: uppercase;
+            margin-bottom: 24px;
+        }
+
+        .hero-mock-title {
+            font-family: var(--font-cinzel);
+            font-size: clamp(2.5rem, 6vw, 5.5rem);
+            color: var(--color-cream);
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            line-height: 1.1;
+            margin-bottom: 30px;
+            max-width: 900px;
+            text-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        .hero-mock-btn {
+            border: 1px solid rgba(212, 175, 55, 0.4);
+            color: var(--color-gold-light);
+            padding: 16px 36px;
+            text-transform: uppercase;
+            font-family: var(--font-montserrat);
+            font-size: 11px;
+            letter-spacing: 0.3em;
+            background: transparent;
+            cursor: pointer;
+            transition: all 0.5s ease;
+        }
+
+        .hero-mock-btn:hover {
+            background: rgba(212, 175, 55, 0.1);
+            letter-spacing: 0.35em;
+        }
+
+        /* ─── GENERAL LOADER WRAPPER ─── */
+        .loader-wrapper {
+            position: absolute;
+            inset: 0;
+            z-index: 100;
+            background-color: var(--color-darker);
+            overflow: hidden;
+            display: none;
+        }
+
+        .loader-wrapper.active {
+            display: block;
+        }
+
+        /* Common Elements */
+        .spotlight {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 100vmax;
+            height: 100vmax;
+            background: radial-gradient(circle at center, rgba(212, 175, 55, 0.08) 0%, rgba(10, 10, 10, 0) 60%);
+            z-index: 2;
+            pointer-events: none;
+            opacity: 0;
+        }
+
+        .particles-canvas {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+            opacity: 0.4;
+            pointer-events: none;
+        }
+
+
+        /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+           CONCEPT A: "THE GRAND DARBAR" (Celestial Splendor)
+           ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+        #concept-darbar .curtains-left,
+        #concept-darbar .curtains-right {
+            position: absolute;
+            top: 0;
+            width: 50.5vw;
+            height: 100vh;
+            z-index: 10;
+            overflow: hidden;
+            pointer-events: none;
+        }
+
+        #concept-darbar .curtains-left {
+            left: 0;
+            border-right: 1px solid rgba(212, 175, 55, 0.15);
+        }
+
+        #concept-darbar .curtains-right {
+            right: 0;
+            border-left: 1px solid rgba(212, 175, 55, 0.15);
+        }
+
+        #concept-darbar .curtains-left img,
+        #concept-darbar .curtains-right img {
+            width: 100vw;
+            height: 100%;
+            object-fit: cover;
+            position: absolute;
+            top: 0;
+            filter: brightness(0.65) contrast(1.1) drop-shadow(0 0 50px rgba(0, 0, 0, 0.9));
+        }
+
+        #concept-darbar .curtains-left img {
+            left: 0;
+            object-position: left center;
+        }
+
+        #concept-darbar .curtains-right img {
+            right: 0;
+            object-position: right center;
+        }
+
+        #concept-darbar .tanpura-left {
+            position: absolute;
+            left: -5vw;
+            bottom: -5vh;
+            width: 45vw;
+            max-width: 600px;
+            height: 90vh;
+            z-index: 8;
+            opacity: 0;
+            filter: drop-shadow(20px 20px 40px rgba(0, 0, 0, 0.95)) brightness(0.8);
+        }
+
+        #concept-darbar .tanpura-left img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            object-position: bottom left;
+        }
+
+        #concept-darbar .typography-container {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            z-index: 20;
+            width: 100%;
+            max-width: 800px;
+            text-align: center;
+        }
+
+        #concept-darbar .logo-wrapper {
+            position: relative;
+            width: 400px;
+            height: 400px;
+            margin-bottom: -60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+        }
+
+        #concept-darbar .logo-wrapper img {
+            width: 100%;
+            height: auto;
+            filter: drop-shadow(0 20px 40px rgba(0, 0, 0, 0.8)) brightness(1.1);
+        }
+
+        #concept-darbar .lotus-top,
+        #concept-darbar .lotus-bottom {
+            width: 180px;
+            opacity: 0;
+        }
+
+        #concept-darbar .lotus-top { margin-bottom: -30px; }
+        #concept-darbar .lotus-bottom { margin-top: 15px; }
+
+        #concept-darbar .lotus-top img,
+        #concept-darbar .lotus-bottom img {
+            width: 100%;
+            height: auto;
+            filter: drop-shadow(0 0 15px rgba(212, 175, 55, 0.4));
+        }
+
+        #concept-darbar .name-text {
+            font-family: var(--font-cinzel);
+            font-size: 2.5rem;
+            letter-spacing: 0.25em;
+            color: var(--color-gold-light);
+            text-transform: uppercase;
+            margin-bottom: 15px;
+            text-shadow: 0 4px 15px rgba(0, 0, 0, 0.9);
+            white-space: nowrap;
+        }
+
+        #concept-darbar .name-char {
+            opacity: 0;
+            display: inline-block;
+        }
+
+        #concept-darbar .subtitle-text {
+            font-family: var(--font-montserrat);
+            font-size: 1.1rem;
+            letter-spacing: 0.5em;
+            color: #a38c5b;
+            opacity: 0;
+            text-transform: uppercase;
+        }
+
+        /* God Rays effect in background */
+        .god-rays {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 80vw;
+            height: 80vw;
+            background: repeating-conic-gradient(
+                from 0deg,
+                rgba(212, 175, 55, 0.03) 0deg 15deg,
+                rgba(0, 0, 0, 0) 15deg 30deg
+            );
+            border-radius: 50%;
+            z-index: 1;
+            filter: blur(10px);
+            pointer-events: none;
+            opacity: 0;
+        }
+
+
+        /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+           CONCEPT B: "RAGA WHISPERS" (Modern Classical Minimalism)
+           ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+        #concept-raga {
+            background: radial-gradient(circle at center, #0f0d0a 0%, #030303 100%);
+        }
+
+        #concept-raga .wave-container {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 200px;
+            z-index: 2;
+            opacity: 0.25;
+            pointer-events: none;
+        }
+
+        #concept-raga .whisper-center {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            z-index: 10;
+        }
+
+        #concept-raga .sacred-circle {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 320px;
+            height: 320px;
+            border: 1px solid rgba(212, 175, 55, 0.12);
+            border-radius: 50%;
+            z-index: 1;
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        #concept-raga .logo-minimal {
+            width: 120px;
+            height: auto;
+            opacity: 0;
+            margin-bottom: 40px;
+            filter: drop-shadow(0 0 20px rgba(212, 175, 55, 0.2));
+            z-index: 2;
+        }
+
+        #concept-raga .raga-name {
+            font-family: var(--font-cinzel);
+            font-size: 2.8rem;
+            font-weight: 300;
+            letter-spacing: 0.4em;
+            color: var(--color-cream);
+            text-transform: uppercase;
+            margin-bottom: 20px;
+            text-align: center;
+            opacity: 0;
+            z-index: 2;
+        }
+
+        #concept-raga .raga-sub {
+            font-family: var(--font-montserrat);
+            font-size: 11px;
+            letter-spacing: 0.7em;
+            color: var(--color-gold);
+            text-transform: uppercase;
+            opacity: 0;
+            text-align: center;
+            z-index: 2;
+        }
+
+        /* Premium preloader bar */
+        #concept-raga .progress-bar-container {
+            width: 200px;
+            height: 1px;
+            background: rgba(255, 255, 255, 0.05);
+            margin-top: 50px;
+            position: relative;
+            overflow: hidden;
+            opacity: 0;
+            z-index: 2;
+        }
+
+        #concept-raga .progress-bar-fill {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 0%;
+            background: linear-gradient(90deg, rgba(212, 175, 55, 0.2), var(--color-gold));
+            box-shadow: 0 0 10px rgba(212, 175, 55, 0.8);
+        }
+
+
+        /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+           CONCEPT C: "SADHANA" (The Blooming Sacred Lotus)
+           ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+        #concept-sadhana {
+            background-color: #050505;
+        }
+
+        #concept-sadhana .blooming-lotus-wrapper {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            z-index: 10;
+            width: 100%;
+            max-width: 600px;
+        }
+
+        #concept-sadhana .lotus-assembly {
+            position: relative;
+            width: 250px;
+            height: 250px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        /* Splits and blooms */
+        #concept-sadhana .lotus-half-top {
+            position: absolute;
+            top: 0;
+            width: 250px;
+            height: 125px;
+            overflow: hidden;
+            transform-origin: bottom center;
+            opacity: 0;
+        }
+
+        #concept-sadhana .lotus-half-bottom {
+            position: absolute;
+            bottom: 0;
+            width: 250px;
+            height: 125px;
+            overflow: hidden;
+            transform-origin: top center;
+            opacity: 0;
+        }
+
+        #concept-sadhana .lotus-half-top img {
+            width: 250px;
+            height: 250px;
+            object-fit: contain;
+            position: absolute;
+            top: 0;
+            filter: drop-shadow(0 -5px 15px rgba(212, 175, 55, 0.3));
+        }
+
+        #concept-sadhana .lotus-half-bottom img {
+            width: 250px;
+            height: 250px;
+            object-fit: contain;
+            position: absolute;
+            bottom: 0;
+            filter: drop-shadow(0 5px 15px rgba(212, 175, 55, 0.3));
+        }
+
+        #concept-sadhana .logo-revealed {
+            position: absolute;
+            width: 140px;
+            height: auto;
+            opacity: 0;
+            transform: scale(0.7);
+            filter: drop-shadow(0 0 30px rgba(212, 175, 55, 0.5));
+            z-index: 2;
+        }
+
+        #concept-sadhana .sadhana-text-container {
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        #concept-sadhana .sadhana-name {
+            font-family: var(--font-cinzel);
+            font-size: 2.4rem;
+            letter-spacing: 0.3em;
+            color: var(--color-gold-light);
+            text-transform: uppercase;
+            margin-bottom: 12px;
+            font-weight: 500;
+        }
+
+        #concept-sadhana .sadhana-sub {
+            font-family: var(--font-montserrat);
+            font-size: 11px;
+            letter-spacing: 0.6em;
+            color: rgba(250, 246, 238, 0.5);
+            text-transform: uppercase;
+        }
+
+        /* Volumetric aura behind lotus */
+        #concept-sadhana .volumetric-glow {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 450px;
+            height: 450px;
+            background: radial-gradient(circle at center, rgba(212, 175, 55, 0.15) 0%, rgba(212, 175, 55, 0.02) 40%, rgba(0,0,0,0) 70%);
+            z-index: 1;
+            opacity: 0;
+            pointer-events: none;
+            filter: blur(15px);
+        }
+
+        /* ─── MOBILE RESPONSIVENESS ─── */
+        @media (max-width: 768px) {
+            #controls-bar {
+                width: 95%;
+                padding: 6px 12px;
+                gap: 8px;
+                border-radius: 20px;
+                top: 10px;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .control-label {
+                width: 100%;
+                text-align: center;
+                border-right: none;
+                padding-right: 0;
+                margin-right: 0;
+                margin-bottom: 4px;
+            }
+
+            .btn-option {
+                padding: 6px 12px;
+                font-size: 9px;
+            }
+
+            .btn-replay {
+                padding: 6px 12px;
+                font-size: 9px;
+            }
+
+            #concept-darbar .name-text {
+                font-size: 1.6rem;
+                letter-spacing: 0.18em;
+            }
+
+            #concept-darbar .subtitle-text {
+                font-size: 0.85rem;
+                letter-spacing: 0.35em;
+            }
+
+            #concept-darbar .logo-wrapper {
+                width: 250px;
+                height: 250px;
+                margin-bottom: -30px;
+            }
+
+            #concept-darbar .lotus-top,
+            #concept-darbar .lotus-bottom {
+                width: 120px;
+            }
+
+            #concept-darbar .tanpura-left {
+                width: 60vw;
+                height: 60vh;
+                left: -15vw;
+                opacity: 0.1 !important;
+            }
+
+            #concept-raga .raga-name {
+                font-size: 1.8rem;
+                letter-spacing: 0.3em;
+            }
+
+            #concept-raga .raga-sub {
+                font-size: 9px;
+                letter-spacing: 0.5em;
+            }
+
+            #concept-raga .sacred-circle {
+                width: 220px;
+                height: 220px;
+            }
+
+            #concept-sadhana .sadhana-name {
+                font-size: 1.5rem;
+                letter-spacing: 0.22em;
+            }
+
+            #concept-sadhana .sadhana-sub {
+                font-size: 9px;
+                letter-spacing: 0.4em;
+            }
+
+            #concept-sadhana .lotus-assembly {
+                width: 180px;
+                height: 180px;
+            }
+
+            #concept-sadhana .lotus-half-top,
+            #concept-sadhana .lotus-half-bottom {
+                width: 180px;
+                height: 90px;
+            }
+
+            #concept-sadhana .lotus-half-top img { width: 180px; height: 180px; }
+            #concept-sadhana .lotus-half-bottom img { width: 180px; height: 180px; }
+            #concept-sadhana .logo-revealed { width: 90px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- FLOATING INTERACTIVE CONTROLS BAR -->
+    <div id="controls-bar">
+        <span class="control-label">Loader Preview</span>
+        <button class="btn-option active" onclick="switchLoader('concept-darbar')">Grand Darbar</button>
+        <button class="btn-option" onclick="switchLoader('concept-raga')">Raga Whispers</button>
+        <button class="btn-option" onclick="switchLoader('concept-sadhana')">Sacred Sadhana</button>
+        <button class="btn-replay" onclick="replayAnimation()">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M21.5 2v6h-6M21.34 15.57a10 10 0 1 1-.57-8.38l5.67-5.67"/>
+            </svg>
+            Replay
+        </button>
+    </div>
+
+    <!-- MOCK HERO PAGE CONTENT BEHIND THE PRELOADER (For Cross-fade transition verification) -->
+    <div id="behind-content">
+        <span class="hero-mock-tag">Classical Crossover & Devotion</span>
+        <h1 class="hero-mock-title">Harsimran Kaur Kohli</h1>
+        <button class="hero-mock-btn" onclick="replayAnimation()">Restart Cinematic Sequence</button>
+    </div>
+
+
+    <!-- ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+       CONCEPT A: "THE GRAND DARBAR" (Celestial Splendor)
+       ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ -->
+    <div class="loader-wrapper active" id="concept-darbar">
+        <canvas class="particles-canvas" id="canvas-darbar"></canvas>
+        <div class="spotlight" id="spotlight-darbar"></div>
+        <div class="god-rays" id="rays-darbar"></div>
+
+        <!-- Theatrical curatins split-revealing from center -->
+        <div class="curtains-left" id="curtain-left">
+            <img src="public/assets/cover/hsk_Fabric.png" alt="Velvet Curtain Left" />
+        </div>
+        <div class="curtains-right" id="curtain-right">
+            <img src="public/assets/cover/hsk_Fabric.png" alt="Velvet Curtain Right" />
+        </div>
+
+        <div class="tanpura-left" id="tanpura-darbar">
+            <img src="public/assets/cover/tanpura.png" alt="Grand Tanpura" />
+        </div>
+
+        <div class="typography-container" id="typo-darbar">
+            <div class="lotus-top" id="darbar-lotus-top">
+                <img src="public/assets/cover/lotus.png" alt="Lotus Top" />
+            </div>
+            <div class="logo-wrapper" id="darbar-logo">
+                <img src="public/assets/cover/coverlogo.png" alt="HSK Golden Emblem" />
+            </div>
+            <div class="branding-text">
+                <div class="name-text" id="darbar-name">Harsimran Kaur Kohli</div>
+                <div class="subtitle-text" id="darbar-sub">SINGER & MUSIC EDUCATOR</div>
+            </div>
+            <div class="lotus-bottom" id="darbar-lotus-bottom">
+                <img src="public/assets/cover/lotus_bottom.png" alt="Lotus Bottom" />
+            </div>
+        </div>
+    </div>
+
+
+    <!-- ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+       CONCEPT B: "RAGA WHISPERS" (Modern Classical Minimalism)
+       ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ -->
+    <div class="loader-wrapper" id="concept-raga">
+        <canvas class="particles-canvas" id="canvas-raga"></canvas>
+        <div class="sacred-circle" id="raga-circle"></div>
+        
+        <div class="whisper-center">
+            <img src="public/assets/cover/coverlogo.png" alt="Logo" class="logo-minimal" id="raga-logo" />
+            <h1 class="raga-name" id="raga-name">Harsimran Kohli</h1>
+            <div class="raga-sub" id="raga-sub">SINGER & MUSIC EDUCATOR</div>
+            
+            <div class="progress-bar-container" id="raga-progress-container">
+                <div class="progress-bar-fill" id="raga-progress-fill"></div>
+            </div>
+        </div>
+
+        <!-- Premium SVG Wave representation of a classical Raga wave scale -->
+        <div class="wave-container">
+            <svg width="100%" height="100%" viewBox="0 0 1440 200" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+                <path id="raga-wave" d="M0 100 C 300 20, 600 180, 900 60 C 1200 140, 1300 80, 1440 100 L 1440 200 L 0 200 Z" fill="rgba(212, 175, 55, 0.03)" stroke="rgba(212, 175, 55, 0.15)" stroke-width="1.5"/>
+            </svg>
+        </div>
+    </div>
+
+
+    <!-- ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+       CONCEPT C: "SADHANA" (The Blooming Sacred Lotus)
+       ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ -->
+    <div class="loader-wrapper" id="concept-sadhana">
+        <canvas class="particles-canvas" id="canvas-sadhana"></canvas>
+        <div class="volumetric-glow" id="sadhana-glow"></div>
+
+        <div class="blooming-lotus-wrapper">
+            <!-- Lotus meeting in middle and parting dynamically to reveal logo inside -->
+            <div class="lotus-assembly" id="sadhana-assembly">
+                <img src="public/assets/cover/coverlogo.png" alt="HSK Logo" class="logo-revealed" id="sadhana-logo" />
+                
+                <div class="lotus-half-top" id="sadhana-lotus-top">
+                    <!-- Note: reusing lotus.png for top half -->
+                    <img src="public/assets/cover/lotus.png" alt="Lotus Top Half" />
+                </div>
+                <div class="lotus-half-bottom" id="sadhana-lotus-bottom">
+                    <!-- Note: reusing lotus_bottom.png for bottom half -->
+                    <img src="public/assets/cover/lotus_bottom.png" alt="Lotus Bottom Half" />
+                </div>
+            </div>
+
+            <div class="sadhana-text-container" id="sadhana-text">
+                <div class="sadhana-name">Harsimran Kaur Kohli</div>
+                <div class="sadhana-sub">SINGER & MUSIC EDUCATOR</div>
+            </div>
+        </div>
+    </div>
+
+
+    <script>
+        let activeLoaderId = 'concept-darbar';
+        let currentTimeline = null;
+        let particleAnimations = [];
+
+        // Stagger characters helper
+        function prepareStaggerText(elementId) {
+            const el = document.getElementById(elementId);
+            if (!el) return;
+            const text = el.innerText.trim();
+            el.innerHTML = '';
+            
+            text.split(' ').forEach((word, wordIndex, array) => {
+                const wordSpan = document.createElement('span');
+                wordSpan.style.display = 'inline-block';
+                wordSpan.style.whiteSpace = 'nowrap';
+                
+                word.split('').forEach(char => {
+                    const charSpan = document.createElement('span');
+                    charSpan.innerText = char;
+                    charSpan.className = 'name-char';
+                    charSpan.style.display = 'inline-block';
+                    wordSpan.appendChild(charSpan);
+                });
+                
+                el.appendChild(wordSpan);
+                if (wordIndex < array.length - 1) {
+                    const spaceSpan = document.createElement('span');
+                    spaceSpan.innerHTML = '&nbsp;';
+                    spaceSpan.style.display = 'inline-block';
+                    el.appendChild(spaceSpan);
+                }
+            });
+        }
+
+        // Initialize typography
+        prepareStaggerText('darbar-name');
+
+        // Main Switcher
+        function switchLoader(loaderId) {
+            // Deactivate buttons
+            document.querySelectorAll('.btn-option').forEach(btn => btn.classList.remove('active'));
+            // Activate clicked button
+            const activeBtn = Array.from(document.querySelectorAll('.btn-option')).find(btn => btn.innerText.toLowerCase().replace(' ', '') === loaderId.replace('concept-', ''));
+            if (activeBtn) activeBtn.classList.add('active');
+            else {
+                // fallback matcher
+                if (loaderId === 'concept-darbar') document.querySelectorAll('.btn-option')[0].classList.add('active');
+                if (loaderId === 'concept-raga') document.querySelectorAll('.btn-option')[1].classList.add('active');
+                if (loaderId === 'concept-sadhana') document.querySelectorAll('.btn-option')[2].classList.add('active');
+            }
+
+            // Hide behind content
+            document.getElementById('behind-content').classList.remove('visible');
+            gsap.set("#behind-content", { scale: 0.95 });
+
+            // Hide all loaders
+            document.querySelectorAll('.loader-wrapper').forEach(wrapper => {
+                wrapper.classList.remove('active');
+                gsap.set(wrapper, { opacity: 1, visibility: 'visible' });
+            });
+
+            // Show active loader
+            const activeWrapper = document.getElementById(loaderId);
+            activeWrapper.classList.add('active');
+            activeLoaderId = loaderId;
+
+            // Trigger Animation
+            runLoaderAnimation(loaderId);
+        }
+
+        // Kill any running animations
+        function killCurrentAnimations() {
+            if (currentTimeline) {
+                currentTimeline.kill();
+                currentTimeline = null;
+            }
+            gsap.killTweensOf("*");
+        }
+
+        // Run Specific Loader Animation Timeline
+        function runLoaderAnimation(loaderId) {
+            killCurrentAnimations();
+
+            if (loaderId === 'concept-darbar') {
+                animateConceptDarbar();
+            } else if (loaderId === 'concept-raga') {
+                animateConceptRaga();
+            } else if (loaderId === 'concept-sadhana') {
+                animateConceptSadhana();
+            }
+        }
+
+        function replayAnimation() {
+            switchLoader(activeLoaderId);
+        }
+
+
+        /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+           ANIMATION: CONCEPT A - GRAND DARBAR
+           ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+        function animateConceptDarbar() {
+            const tl = gsap.timeline({
+                onComplete: () => {
+                    // Transition to behind content
+                    document.getElementById('behind-content').classList.add('visible');
+                    gsap.to("#behind-content", { scale: 1, duration: 1.5, ease: "power2.out" });
+                }
+            });
+            currentTimeline = tl;
+
+            // Reset Initial states
+            gsap.set("#curtain-left", { x: "0%", skewX: 0, opacity: 1 });
+            gsap.set("#curtain-right", { x: "0%", skewX: 0, opacity: 1 });
+            gsap.set("#tanpura-darbar", { x: "-20vw", opacity: 0, y: 30 });
+            gsap.set("#darbar-logo", { opacity: 0, scale: 0.7, filter: "blur(10px)" });
+            gsap.set("#darbar-lotus-top, #darbar-lotus-bottom", { opacity: 0, scale: 0.8, filter: "blur(10px)" });
+            gsap.set("#darbar-name .name-char", { opacity: 0, y: 20 });
+            gsap.set("#darbar-sub", { opacity: 0, y: 15 });
+            gsap.set("#spotlight-darbar", { opacity: 0, scale: 0.8 });
+            gsap.set("#rays-darbar", { opacity: 0, rotation: 0 });
+
+            // ─── Entry Timeline ───
+            tl.to("#spotlight-darbar", { duration: 2, opacity: 1, scale: 1.1, ease: "power2.inOut" }, 0.1)
+              .to("#rays-darbar", { duration: 2.5, opacity: 0.8, ease: "power1.inOut" }, 0.2)
+              .to("#tanpura-darbar", { duration: 1.8, opacity: 1, x: "0vw", y: 0, ease: "power3.out" }, 0.3)
+              .to("#darbar-lotus-top", { duration: 1.2, opacity: 1, scale: 1, filter: "blur(0px)", ease: "back.out(1.2)" }, 0.6)
+              .to("#darbar-logo", { duration: 1.2, opacity: 1, scale: 1, filter: "blur(0px)", ease: "power3.out" }, 0.8)
+              .to("#darbar-name .name-char", { duration: 0.6, opacity: 1, y: 0, stagger: 0.02, ease: "power2.out" }, 1.0)
+              .to("#darbar-sub", { duration: 0.8, opacity: 1, y: 0, ease: "power2.out" }, 1.3)
+              .to("#darbar-lotus-bottom", { duration: 1.2, opacity: 1, scale: 1, filter: "blur(0px)", ease: "back.out(1.2)" }, 1.1);
+
+            // Floating loop
+            gsap.to("#darbar-lotus-top, #darbar-lotus-bottom", { duration: 3, y: "-=10", yoyo: true, repeat: -1, ease: "sine.inOut" });
+            gsap.to("#rays-darbar", { duration: 30, rotation: 360, repeat: -1, ease: "none" });
+
+            // ─── Exit Sequence (Cross-Dissolve with Double-Curtain Splitting) ───
+            tl.add("exit", 3.5);
+            tl.to("#curtain-left", { duration: 2, x: "-100%", skewX: 8, opacity: 0, ease: "power3.inOut" }, "exit")
+              .to("#curtain-right", { duration: 2, x: "100%", skewX: -8, opacity: 0, ease: "power3.inOut" }, "exit")
+              .to("#tanpura-darbar", { duration: 1.6, x: "-30vw", opacity: 0, ease: "power3.in" }, "exit")
+              .to("#typo-darbar", { duration: 1.5, scale: 0.95, filter: "blur(8px)", opacity: 0, ease: "power3.inOut" }, "exit")
+              .to("#spotlight-darbar", { duration: 1.8, opacity: 0, scale: 1.5, ease: "power2.inOut" }, "exit")
+              .to("#rays-darbar", { duration: 1.5, opacity: 0, ease: "power2.inOut" }, "exit")
+              .to("#concept-darbar", { duration: 1.8, opacity: 0, ease: "power2.inOut" }, "exit");
+        }
+
+
+        /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+           ANIMATION: CONCEPT B - RAGA WHISPERS
+           ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+        function animateConceptRaga() {
+            const tl = gsap.timeline({
+                onComplete: () => {
+                    document.getElementById('behind-content').classList.add('visible');
+                    gsap.to("#behind-content", { scale: 1, duration: 1.5, ease: "power2.out" });
+                }
+            });
+            currentTimeline = tl;
+
+            // Reset Initial states
+            gsap.set("#raga-circle", { opacity: 0, scale: 0.6 });
+            gsap.set("#raga-logo", { opacity: 0, scale: 0.8, filter: "blur(10px)" });
+            gsap.set("#raga-name", { opacity: 0, letterSpacing: "0.15em" });
+            gsap.set("#raga-sub", { opacity: 0, y: 15 });
+            gsap.set("#raga-progress-container", { opacity: 0, width: 0 });
+            gsap.set("#raga-progress-fill", { width: "0%" });
+
+            // ─── Entry Timeline ───
+            tl.to("#raga-circle", { duration: 2, opacity: 1, scale: 1, ease: "power2.out" }, 0.1)
+              .to("#raga-logo", { duration: 1.5, opacity: 1, scale: 1, filter: "blur(0px)", ease: "power3.out" }, 0.3)
+              .to("#raga-name", { duration: 1.8, opacity: 1, letterSpacing: "0.4em", ease: "power2.out" }, 0.6)
+              .to("#raga-sub", { duration: 1, opacity: 1, y: 0, ease: "power2.out" }, 0.9)
+              .to("#raga-progress-container", { duration: 0.8, opacity: 1, width: 200, ease: "power2.out" }, 1.1)
+              .to("#raga-progress-fill", { duration: 2, width: "100%", ease: "power1.inOut" }, 1.3);
+
+            // Animate SVG frequency line wave
+            gsap.to("#raga-wave", {
+                duration: 4,
+                attr: { d: "M0 120 C 300 180, 600 20, 900 140 C 1200 60, 1300 120, 1440 120 L 1440 200 L 0 200 Z" },
+                repeat: -1,
+                yoyo: true,
+                ease: "sine.inOut"
+            });
+
+            // ─── Exit Sequence (Elegant Scale & Disappear) ───
+            tl.add("exit", 3.8);
+            tl.to("#raga-circle", { duration: 1.5, scale: 1.4, opacity: 0, ease: "power3.inOut" }, "exit")
+              .to("#raga-logo", { duration: 1.2, scale: 0.8, filter: "blur(8px)", opacity: 0, ease: "power3.in" }, "exit")
+              .to("#raga-name", { duration: 1.5, letterSpacing: "0.6em", filter: "blur(8px)", opacity: 0, ease: "power3.inOut" }, "exit")
+              .to("#raga-sub", { duration: 1.2, y: -15, opacity: 0, ease: "power3.in" }, "exit")
+              .to("#raga-progress-container", { duration: 1, opacity: 0, ease: "power2.in" }, "exit")
+              .to("#concept-raga", { duration: 1.5, opacity: 0, ease: "power2.inOut" }, "exit");
+        }
+
+
+        /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+           ANIMATION: CONCEPT C - SACRED SADHANA (Lotus Bloom)
+           ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+        function animateConceptSadhana() {
+            const tl = gsap.timeline({
+                onComplete: () => {
+                    document.getElementById('behind-content').classList.add('visible');
+                    gsap.to("#behind-content", { scale: 1, duration: 1.5, ease: "power2.out" });
+                }
+            });
+            currentTimeline = tl;
+
+            // Reset Initial states
+            gsap.set("#sadhana-lotus-top", { opacity: 0, y: 50, scale: 0.6, rotation: -30 });
+            gsap.set("#sadhana-lotus-bottom", { opacity: 0, y: -50, scale: 0.6, rotation: 30 });
+            gsap.set("#sadhana-logo", { opacity: 0, scale: 0.5 });
+            gsap.set("#sadhana-text", { opacity: 0, y: 30 });
+            gsap.set("#sadhana-glow", { opacity: 0, scale: 0.7 });
+
+            // ─── Entry Timeline (Sacred Union) ───
+            tl.to("#sadhana-lotus-top", { duration: 1.5, opacity: 0.9, y: 0, scale: 1, rotation: 0, ease: "power3.out" }, 0.1)
+              .to("#sadhana-lotus-bottom", { duration: 1.5, opacity: 0.9, y: 0, scale: 1, rotation: 0, ease: "power3.out" }, 0.1)
+              .to("#sadhana-glow", { duration: 2, opacity: 0.8, scale: 1, ease: "power2.out" }, 0.3);
+
+            // ─── Blooming Reveal (The Lotus parts and reveals the Golden Emblem inside) ───
+            tl.add("bloom", 1.5);
+            tl.to("#sadhana-lotus-top", { duration: 1.8, y: -65, scale: 0.85, ease: "back.out(1.2)" }, "bloom")
+              .to("#sadhana-lotus-bottom", { duration: 1.8, y: 65, scale: 0.85, ease: "back.out(1.2)" }, "bloom")
+              .to("#sadhana-logo", { duration: 1.8, opacity: 1, scale: 1.1, ease: "power3.out" }, "bloom")
+              .to("#sadhana-text", { duration: 1.5, opacity: 1, y: 0, ease: "power3.out" }, "bloom+=0.6");
+
+            // Bloom-specific background floating loops
+            gsap.to("#sadhana-lotus-top", { duration: 3, y: "-=5", yoyo: true, repeat: -1, ease: "sine.inOut" });
+            gsap.to("#sadhana-lotus-bottom", { duration: 3, y: "+=5", yoyo: true, repeat: -1, ease: "sine.inOut" });
+            gsap.to("#sadhana-logo", { duration: 4, scale: 1, repeat: -1, yoyo: true, ease: "sine.inOut" });
+
+            // ─── Exit Sequence (Cross-Dissolve & Bloom Fade) ───
+            tl.add("exit", 4.0);
+            tl.to("#sadhana-assembly", { duration: 1.5, scale: 1.1, opacity: 0, filter: "blur(10px)", ease: "power2.inOut" }, "exit")
+              .to("#sadhana-text", { duration: 1.2, scale: 0.95, opacity: 0, filter: "blur(6px)", ease: "power2.in" }, "exit")
+              .to("#sadhana-glow", { duration: 1.5, opacity: 0, scale: 1.3, ease: "power2.inOut" }, "exit")
+              .to("#concept-sadhana", { duration: 1.5, opacity: 0, ease: "power2.inOut" }, "exit");
+        }
+
+
+        /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+           PARTICLE SYSTEMS CREATION (For Premium Visuals)
+           ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+        class Particle {
+            constructor(canvas) {
+                this.canvas = canvas;
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * canvas.height;
+                this.size = Math.random() * 1.8 + 0.6;
+                this.speedX = Math.random() * 0.4 - 0.2;
+                this.speedY = Math.random() * -0.5 - 0.1; // rise up slowly
+                this.opacity = Math.random() * 0.4 + 0.1;
+                this.goldColor = Math.random() > 0.5 ? 'rgba(212, 175, 55,' : 'rgba(243, 229, 171,';
+            }
+            update() {
+                this.x += this.speedX;
+                this.y += this.speedY;
+                if (this.y < 0) {
+                    this.y = this.canvas.height;
+                    this.x = Math.random() * this.canvas.width;
+                }
+                if (this.x > this.canvas.width) this.x = 0;
+                else if (this.x < 0) this.x = this.canvas.width;
+            }
+            draw(ctx) {
+                ctx.fillStyle = this.goldColor + this.opacity + ')';
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fill();
+            }
+        }
+
+        function initParticles(canvasId) {
+            const canvas = document.getElementById(canvasId);
+            if (!canvas) return;
+            const ctx = canvas.getContext('2d');
+            let particles = [];
+            
+            function resize() {
+                canvas.width = window.innerWidth;
+                canvas.height = window.innerHeight;
+            }
+            window.addEventListener('resize', resize);
+            resize();
+
+            for (let i = 0; i < 65; i++) {
+                particles.push(new Particle(canvas));
+            }
+
+            function animate() {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                particles.forEach(p => {
+                    p.update();
+                    p.draw(ctx);
+                });
+                const animationFrameId = requestAnimationFrame(animate);
+                particleAnimations.push(animationFrameId);
+            }
+            animate();
+        }
+
+        // Initialize all particle canvases
+        initParticles('canvas-darbar');
+        initParticles('canvas-raga');
+        initParticles('canvas-sadhana');
+
+        // Start default
+        switchLoader('concept-darbar');
+    </script>
+</body>
+</html>
