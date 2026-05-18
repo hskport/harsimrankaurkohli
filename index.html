@@ -693,18 +693,12 @@
         </div>
 
         <div class="typography-container" id="typography">
-            <div class="lotus-top" id="lotus-top">
-                <img src="public/assets/cover/lotus.png" alt="Lotus Top" />
-            </div>
             <div class="logo-hsk-wrapper" id="logo-wrapper">
                 <img src="public/assets/cover/coverlogo.png" alt="HSK Logo" class="logo-hsk-img" id="logo" />
             </div>
             <div class="branding-text">
                 <div class="name-text" id="nameText">Harsimran Kohli</div>
                 <div class="subtitle-text" id="subtitleText">SINGER & MUSIC EDUCATOR</div>
-            </div>
-            <div class="lotus-bottom" id="lotus-bottom">
-                <img src="public/assets/cover/lotus_bottom.png" alt="Lotus Bottom" />
             </div>
         </div>
     </div>
@@ -1100,41 +1094,34 @@
 
             const tl = gsap.timeline({
                 onComplete: () => {
-                    gsap.set("#main-content", { visibility: "visible" });
-                    gsap.to("#main-content", { opacity: 1, duration: 1.5 });
-                    gsap.to("#global-particles", { opacity: 1, duration: 2 });
-                    gsap.to("#loader-wrapper", {
-                        opacity: 0,
-                        duration: 1,
-                        onComplete: () => {
-                            document.getElementById('loader-wrapper').style.display = 'none';
-                            document.body.classList.remove('overflow-hidden');
-                            initAnimations(); // Start portfolio animations
-                        }
-                    });
+                    document.getElementById('loader-wrapper').style.display = 'none';
+                    document.body.classList.remove('overflow-hidden');
+                    initAnimations(); // Start portfolio animations
                 }
             });
 
-            gsap.set(".lotus-top, .lotus-bottom", { opacity: 0, scale: 0.8, filter: "blur(10px)" });
+            // Set initial state for typography parts
+            gsap.set("#logo", { opacity: 0, scale: 0.8, filter: "blur(5px)" });
+            gsap.set(".name-char", { opacity: 0, y: 15 });
+            gsap.set("#subtitleText", { opacity: 0, y: 10 });
 
-            tl.to("#spotlight", { duration: 1.5, opacity: 1, scale: 1.2, ease: "power2.inOut" }, 0.3)
-                .to("#tanpura", { duration: 1.5, opacity: 1, y: 0, ease: "power2.out" }, 0.3)
-                .to("#curtains", { duration: 1.5, opacity: 1, ease: "power2.inOut" }, 0.5)
-                .to("#lotus-top", { duration: 1, opacity: 1, scale: 1, filter: "blur(0px)", ease: "back.out(1.2)" }, 0.8)
-                .to("#logo", { duration: 1, opacity: 1, scale: 1, ease: "power3.out" }, 1.0)
-                .to(".name-char", { duration: 0.5, opacity: 1, y: 0, stagger: 0.02, ease: "power2.out" }, 1.2)
-                .to("#subtitleText", { duration: 0.8, opacity: 1, y: 0, ease: "power2.out" }, 1.8)
-                .to("#lotus-bottom", { duration: 1, opacity: 1, scale: 1, filter: "blur(0px)", ease: "back.out(1.2)" }, 1.5);
+            tl.to("#spotlight", { duration: 2, opacity: 1, scale: 1.1, ease: "power2.inOut" }, 0.2)
+                .to("#tanpura", { duration: 2, opacity: 1, y: 0, ease: "power2.out" }, 0.2)
+                .to("#curtains", { duration: 2, opacity: 1, ease: "power2.inOut" }, 0.4)
+                .to("#logo", { duration: 1.2, opacity: 1, scale: 1, filter: "blur(0px)", ease: "power3.out" }, 0.6)
+                .to(".name-char", { duration: 0.6, opacity: 1, y: 0, stagger: 0.02, ease: "power2.out" }, 1.0)
+                .to("#subtitleText", { duration: 0.8, opacity: 1, y: 0, ease: "power2.out" }, 1.4);
 
-            // Exit Sequence
-            tl.add("exit", 3.5);
-            tl.to("#curtains", { duration: 2, x: "100%", skewX: -5, opacity: 0, ease: "power3.inOut" }, "exit")
-                .to("#tanpura", { duration: 1.5, x: "-20vw", opacity: 0, ease: "power3.in" }, "exit")
-                .to("#typography", { duration: 1.2, scale: 1.2, opacity: 0, ease: "power2.in" }, "exit")
-                .to("#spotlight", { duration: 1.5, opacity: 1, scale: 3, backgroundColor: "rgba(255, 255, 255, 0.8)", ease: "power4.in" }, "exit");
+            // Exit Sequence (Subtle, Cinematic Dissolve Cross-fade)
+            tl.add("exit", 3.2);
+            tl.to("#main-content", { duration: 1.8, visibility: "visible", opacity: 1, ease: "power2.inOut" }, "exit")
+                .to("#curtains", { duration: 1.8, x: "15vw", opacity: 0, ease: "power3.inOut" }, "exit")
+                .to("#tanpura", { duration: 1.5, x: "-10vw", opacity: 0, ease: "power3.in" }, "exit")
+                .to("#typography", { duration: 1.5, scale: 0.96, filter: "blur(8px)", opacity: 0, ease: "power3.inOut" }, "exit")
+                .to("#spotlight", { duration: 1.8, opacity: 0, scale: 1.5, ease: "power2.inOut" }, "exit")
+                .to("#loader-wrapper", { duration: 1.8, opacity: 0, ease: "power2.inOut" }, "exit");
 
             // Background loops
-            gsap.to(".lotus-top, .lotus-bottom", { duration: 3, y: "-=10", yoyo: true, repeat: -1, ease: "sine.inOut" }, 4.5);
             gsap.to("#light-sweep", { duration: 8, left: "200%", repeat: -1, ease: "none", delay: 1 });
 
             // Particles
