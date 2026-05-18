@@ -380,14 +380,15 @@
             }
 
             .logo-hsk-wrapper {
-                width: 320px;
-                height: 320px;
-                margin-bottom: -80px;
+                width: 240px;
+                height: 240px;
+                margin-bottom: -50px;
             }
 
             .name-text {
-                font-size: 1.5rem;
-                letter-spacing: 0.15em;
+                font-size: 1.6rem;
+                letter-spacing: 0.2em;
+                line-height: 1.4;
                 margin-bottom: 0.8rem;
                 white-space: normal;
                 word-break: break-word;
@@ -1068,10 +1069,29 @@
             const nameContainer = document.getElementById('nameText');
             const nameString = nameContainer.innerText;
             nameContainer.innerHTML = '';
-            nameString.split('').forEach(char => {
-                const span = document.createElement('span');
-                span.innerText = char === ' ' ? '\u00A0' : char;
-                nameContainer.appendChild(span);
+            nameString.split(' ').forEach((word, wordIndex, array) => {
+                const wordSpan = document.createElement('span');
+                wordSpan.style.display = 'inline-block';
+                wordSpan.style.opacity = '1';
+                
+                word.split('').forEach(char => {
+                    const charSpan = document.createElement('span');
+                    charSpan.innerText = char;
+                    charSpan.className = 'name-char';
+                    charSpan.style.display = 'inline-block';
+                    wordSpan.appendChild(charSpan);
+                });
+                
+                nameContainer.appendChild(wordSpan);
+                
+                if (wordIndex < array.length - 1) {
+                    const spaceSpan = document.createElement('span');
+                    spaceSpan.innerText = ' ';
+                    spaceSpan.style.whiteSpace = 'pre';
+                    spaceSpan.style.display = 'inline-block';
+                    spaceSpan.className = 'name-char';
+                    nameContainer.appendChild(spaceSpan);
+                }
             });
 
             const tl = gsap.timeline({
@@ -1098,7 +1118,7 @@
                 .to("#curtains", { duration: 1.5, opacity: 1, ease: "power2.inOut" }, 0.5)
                 .to("#lotus-top", { duration: 1, opacity: 1, scale: 1, filter: "blur(0px)", ease: "back.out(1.2)" }, 0.8)
                 .to("#logo", { duration: 1, opacity: 1, scale: 1, ease: "power3.out" }, 1.0)
-                .to("#nameText span", { duration: 0.5, opacity: 1, y: 0, stagger: 0.02, ease: "power2.out" }, 1.2)
+                .to(".name-char", { duration: 0.5, opacity: 1, y: 0, stagger: 0.02, ease: "power2.out" }, 1.2)
                 .to("#subtitleText", { duration: 0.8, opacity: 1, y: 0, ease: "power2.out" }, 1.8)
                 .to("#lotus-bottom", { duration: 1, opacity: 1, scale: 1, filter: "blur(0px)", ease: "back.out(1.2)" }, 1.5);
 
