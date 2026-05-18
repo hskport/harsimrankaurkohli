@@ -454,7 +454,6 @@
         #main-content {
             opacity: 0;
             visibility: hidden;
-            transition: opacity 1.5s ease;
         }
 
         .section-title {
@@ -653,6 +652,15 @@
         }
 
         /* ─── Global Floating Particles (persist on entire site) ─── */
+        #global-particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
     </style>
 </head>
 
@@ -771,16 +779,16 @@
             </div>
 
             <div class="relative z-10 text-center px-6">
-                <div id="hero-logo" class="mb-6 md:mb-12 opacity-0 translate-y-10">
+                <div id="hero-logo" class="mb-6 md:mb-12">
                     <img src="public/assets/logo/HSK.png" class="h-24 md:h-64 mx-auto premium-logo gold-asset"
                         alt="Logo">
                 </div>
                 <h1 id="hero-title"
-                    class="text-gold-light text-[clamp(2.5rem,6vw,5.5rem)] font-light uppercase tracking-[0.3em] md:tracking-[0.5em] leading-tight mb-4 opacity-0 translate-y-10"
+                    class="text-gold-light text-[clamp(2.5rem,6vw,5.5rem)] font-light uppercase tracking-[0.3em] md:tracking-[0.5em] leading-tight mb-4"
                     style="font-family:'Cinzel',serif">
                     Harsimran Kaur
                 </h1>
-                <div id="hero-footer" class="opacity-0 translate-y-10">
+                <div id="hero-footer" class="">
                     <p class="text-gold text-[11px] md:text-[13px] uppercase tracking-[0.4em] font-medium">
                         Singer & Music Educator
                     </p>
@@ -1162,9 +1170,9 @@
             gsap.registerPlugin(ScrollTrigger);
 
             const heroTl = gsap.timeline();
-            heroTl.to('#hero-logo', { opacity: 1, y: 0, duration: 1.5, ease: 'power3.out' })
-                .to('#hero-title', { opacity: 1, y: 0, duration: 1.8, ease: 'power4.out' }, '-=1.2')
-                .to('#hero-footer', { opacity: 1, y: 0, duration: 1.2, ease: 'power2.out' }, '-=0.8')
+            heroTl.from('#hero-logo', { opacity: 0, y: 40, duration: 1.5, ease: 'power3.out' })
+                .from('#hero-title', { opacity: 0, y: 40, duration: 1.8, ease: 'power4.out' }, '-=1.2')
+                .from('#hero-footer', { opacity: 0, y: 40, duration: 1.2, ease: 'power2.out' }, '-=0.8')
                 .to('#navbar', { opacity: 1, duration: 1.2 }, '-=1.5');
 
             gsap.utils.toArray('.milestone').forEach(el => {
