@@ -974,39 +974,52 @@
                     <p class="text-[10px] font-semibold uppercase tracking-[0.4em] text-gold mb-4">Enquiries</p>
                     <h2 class="text-[clamp(2rem,5vw,4rem)] text-gold-light leading-[1]">Get in Touch</h2>
                 </div>
-                <div class="flex flex-col items-center text-center space-y-12">
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-24">
-                        <div class="space-y-8">
-                            <div>
-                                <p class="text-[10px] uppercase tracking-[0.3em] text-gold mb-2">Email</p>
-                                <a href="mailto:hsk@harsimrankaurkohli.com"
-                                    class="text-gold-light font-light text-sm hover:text-gold transition-colors">hsk@harsimrankaurkohli.com</a>
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24">
+                    <!-- Contact Form -->
+                    <div class="w-full text-left order-2 lg:order-1">
+                        <form action="https://api.web3forms.com/submit" method="POST" class="space-y-6">
+                            <!-- Replace with your Access Key -->
+                            <input type="hidden" name="access_key" value="YOUR_ACCESS_KEY_HERE">
+                            <input type="hidden" name="subject" value="New Enquiry from Portfolio">
+                            <input type="checkbox" name="botcheck" class="hidden" style="display: none;">
+                            
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                <div>
+                                    <label class="text-[10px] uppercase tracking-[0.3em] text-gold mb-2 block">Name</label>
+                                    <input type="text" name="name" required class="w-full bg-black/40 border border-gold/20 focus:border-gold/60 outline-none text-gold-light px-4 py-3 rounded-[2px] transition-colors font-light text-sm">
+                                </div>
+                                <div>
+                                    <label class="text-[10px] uppercase tracking-[0.3em] text-gold mb-2 block">Email</label>
+                                    <input type="email" name="email" required class="w-full bg-black/40 border border-gold/20 focus:border-gold/60 outline-none text-gold-light px-4 py-3 rounded-[2px] transition-colors font-light text-sm">
+                                </div>
                             </div>
                             <div>
-                                <p class="text-[10px] uppercase tracking-[0.3em] text-gold mb-2">Call / WhatsApp</p>
-                                <div class="flex flex-col gap-2">
-                                    <a href="tel:+919999660796"
-                                        class="text-gold-light font-light text-sm hover:text-gold transition-colors">+91 99996 60796</a>
-                                    <a href="tel:+919322332148"
-                                        class="text-gold-light font-light text-sm hover:text-gold transition-colors">+91 93223 32148</a>
-                                </div>
+                                <label class="text-[10px] uppercase tracking-[0.3em] text-gold mb-2 block">Message</label>
+                                <textarea name="message" required rows="5" class="w-full bg-black/40 border border-gold/20 focus:border-gold/60 outline-none text-gold-light px-4 py-3 rounded-[2px] transition-colors font-light text-sm resize-none"></textarea>
+                            </div>
+                            <button type="submit" class="border border-gold/40 hover:bg-gold/10 text-gold-light px-8 py-4 text-[10px] uppercase tracking-[0.3em] transition-all duration-300 w-full mt-2">Send Message</button>
+                        </form>
+                    </div>
+
+                    <!-- Contact Details -->
+                    <div class="space-y-12 text-center lg:text-left order-1 lg:order-2 flex flex-col justify-center">
+                        <div>
+                            <p class="text-[10px] uppercase tracking-[0.3em] text-gold mb-2">Direct Email</p>
+                            <a href="mailto:hsk@harsimrankaurkohli.com" class="text-gold-light font-light text-base hover:text-gold transition-colors">hsk@harsimrankaurkohli.com</a>
+                        </div>
+                        <div>
+                            <p class="text-[10px] uppercase tracking-[0.3em] text-gold mb-2">Call / WhatsApp</p>
+                            <div class="flex flex-col gap-2 lg:items-start items-center">
+                                <a href="tel:+919999660796" class="text-gold-light font-light text-base hover:text-gold transition-colors">+91 99996 60796</a>
+                                <a href="tel:+919322332148" class="text-gold-light font-light text-base hover:text-gold transition-colors">+91 93223 32148</a>
                             </div>
                         </div>
-                        <div class="space-y-8">
-                            <div>
-                                <p class="text-[10px] uppercase tracking-[0.3em] text-gold mb-2">Follow</p>
-                                <div class="flex justify-center md:justify-start gap-6">
-                                    <a href="https://instagram.com/harsimrankohlimusic" target="_blank"
-                                        class="text-gold-light/70 hover:text-gold transition-colors text-sm">Instagram</a>
-                                    <a href="https://youtube.com/@hskschoolofmusic" target="_blank"
-                                        class="text-gold-light/70 hover:text-gold transition-colors text-sm">YouTube</a>
-                                    <a href="#"
-                                        class="text-gold-light/70 hover:text-gold transition-colors text-sm">Facebook</a>
-                                </div>
-                            </div>
-                            <div>
-                                <p class="text-[10px] uppercase tracking-[0.3em] text-gold mb-2">Location</p>
-                                <p class="text-gold-light/80 font-light text-sm">Available for events worldwide</p>
+                        <div>
+                            <p class="text-[10px] uppercase tracking-[0.3em] text-gold mb-2">Social</p>
+                            <div class="flex justify-center lg:justify-start gap-6">
+                                <a href="https://instagram.com/harsimrankohlimusic" target="_blank" class="text-gold-light/70 hover:text-gold transition-colors text-sm">Instagram</a>
+                                <a href="https://youtube.com/@hskschoolofmusic" target="_blank" class="text-gold-light/70 hover:text-gold transition-colors text-sm">YouTube</a>
+                                <a href="#" class="text-gold-light/70 hover:text-gold transition-colors text-sm">Facebook</a>
                             </div>
                         </div>
                     </div>
