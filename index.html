@@ -957,8 +957,10 @@
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12">
                     <!-- Card 1 -->
                     <div class="ornamental-card group">
-                        <div class="service-icon group-hover:scale-110 transition-transform duration-500" style="-webkit-text-fill-color: initial; background: transparent;">
-                            <img src="public/assets/icons/icon.png" alt="Live Recitals" class="h-10 w-auto object-contain inline-block" />
+                        <div class="service-icon group-hover:scale-110 transition-transform duration-500"
+                            style="-webkit-text-fill-color: initial; background: transparent;">
+                            <img src="public/assets/icons/icon.png" alt="Live Recitals"
+                                class="h-10 w-auto object-contain inline-block" />
                         </div>
                         <h3 class="service-title text-xl">Live Recitals</h3>
                         <p class="service-description text-sm">
@@ -976,8 +978,10 @@
 
                     <!-- Card 2 -->
                     <div class="ornamental-card group">
-                        <div class="service-icon group-hover:scale-110 transition-transform duration-500" style="-webkit-text-fill-color: initial; background: transparent;">
-                            <img src="public/assets/icons/Vocal.png" alt="Vocal Mentorship" class="h-10 w-auto object-contain inline-block" />
+                        <div class="service-icon group-hover:scale-110 transition-transform duration-500"
+                            style="-webkit-text-fill-color: initial; background: transparent;">
+                            <img src="public/assets/icons/Vocal.png" alt="Vocal Mentorship"
+                                class="h-10 w-auto object-contain inline-block" />
                         </div>
                         <h3 class="service-title text-xl">Vocal Mentorship</h3>
                         <p class="service-description text-sm">
@@ -994,8 +998,10 @@
 
                     <!-- Card 3 -->
                     <div class="ornamental-card group">
-                        <div class="service-icon group-hover:scale-110 transition-transform duration-500" style="-webkit-text-fill-color: initial; background: transparent;">
-                            <img src="public/assets/icons/onkar.png" alt="Ek Onkar" class="h-10 w-auto object-contain inline-block" />
+                        <div class="service-icon group-hover:scale-110 transition-transform duration-500"
+                            style="-webkit-text-fill-color: initial; background: transparent;">
+                            <img src="public/assets/icons/onkar.png" alt="Ek Onkar"
+                                class="h-10 w-auto object-contain inline-block" />
                         </div>
                         <h3 class="service-title text-xl">Studio & Sacred</h3>
                         <p class="service-description text-sm">
@@ -1111,18 +1117,30 @@
         </section>
 
         <!-- Footer — Corner Bracket Frame -->
-        <footer style="background: #0A0604; padding: 40px 60px;">
+        <style>
+            .footer-cbf          { background: #0A0604; padding: 40px 60px; }
+            .footer-cbf-inner    { border: 1px solid rgba(212,175,90,0.12); padding: 36px 50px; position: relative; display: flex; flex-direction: column; align-items: center; text-align: center; gap: 16px; }
+            .footer-social       { display: flex; gap: 32px; flex-wrap: wrap; justify-content: center; }
+            .footer-eyebrow      { font-family:'Cinzel',serif; font-size:11px; font-weight:400; letter-spacing:0.45em; text-transform:uppercase; color:rgba(212,175,90,0.5); }
+            .footer-tagline      { font-family:'Cinzel',serif; font-size:13px; font-weight:400; letter-spacing:0.35em; text-transform:uppercase; color:rgba(248,234,186,0.38); }
+            .footer-social-link  { font-family:'Cinzel',serif; font-size:12px; font-weight:400; letter-spacing:0.3em; text-transform:uppercase; color:rgba(212,175,90,0.45); text-decoration:none; transition:color 0.3s; }
+            .footer-social-link:hover { color:#D4AF5A; }
+            .footer-copy         { font-family:'Cinzel',serif; font-size:11px; font-weight:400; letter-spacing:0.3em; text-transform:uppercase; color:rgba(248,234,186,0.28); }
+            .footer-credit       { font-family:'Work Sans',sans-serif; font-size:10px; font-style:italic; letter-spacing:0.2em; color:rgba(212,175,90,0.32); }
+            @media (max-width: 640px) {
+                .footer-cbf          { padding: 20px 14px; }
+                .footer-cbf-inner    { padding: 28px 18px; gap: 14px; }
+                .footer-eyebrow      { font-size: 9px; letter-spacing: 0.25em; }
+                .footer-tagline      { font-size: 10px; letter-spacing: 0.12em; }
+                .footer-social       { gap: 18px; }
+                .footer-social-link  { font-size: 10px; letter-spacing: 0.18em; }
+                .footer-copy         { font-size: 9px; letter-spacing: 0.18em; }
+                .footer-credit       { font-size: 8.5px; }
+            }
+        </style>
+        <footer class="footer-cbf">
             <!-- Outer frame with gold corner brackets -->
-            <div style="
-                border: 1px solid rgba(212,175,90,0.12);
-                padding: 36px 50px;
-                position: relative;
-                display: flex;
-                flex-direction: column;
-                align-items: center;
-                text-align: center;
-                gap: 16px;
-            ">
+            <div class="footer-cbf-inner">
                 <!-- Corner TL -->
                 <span style="position:absolute;top:-1px;left:-1px;width:20px;height:20px;border-top:2px solid rgba(212,175,90,0.55);border-left:2px solid rgba(212,175,90,0.55);"></span>
                 <!-- Corner TR -->
@@ -1133,36 +1151,30 @@
                 <span style="position:absolute;bottom:-1px;right:-1px;width:20px;height:20px;border-bottom:2px solid rgba(212,175,90,0.55);border-right:2px solid rgba(212,175,90,0.55);"></span>
 
                 <!-- Eyebrow label -->
-                <p style="font-family:'Cinzel',serif;font-size:11px;font-weight:400;letter-spacing:0.45em;text-transform:uppercase;color:rgba(212,175,90,0.5);">Artistic Portfolio</p>
+                <p class="footer-eyebrow">Artistic Portfolio</p>
 
                 <!-- Logo image -->
                 <img src="public/assets/logo/HSK.png" class="premium-logo gold-asset" alt="HSK Logo"
                     style="height: 44px; width: auto;">
 
                 <!-- Divider rule -->
-                <div style="width:180px;height:1px;background:linear-gradient(90deg,transparent,rgba(212,175,90,0.3),transparent);"></div>
+                <div style="width:140px;height:1px;background:linear-gradient(90deg,transparent,rgba(212,175,90,0.3),transparent);"></div>
 
                 <!-- Genre tagline -->
-                <p style="font-family:'Cinzel',serif;font-size:13px;font-weight:400;letter-spacing:0.35em;text-transform:uppercase;color:rgba(248,234,186,0.38);">Hindustani Classical &nbsp;·&nbsp; Sufi &nbsp;·&nbsp; Bollywood</p>
+                <p class="footer-tagline">Hindustani Classical &nbsp;·&nbsp; Sufi &nbsp;·&nbsp; Bollywood</p>
 
                 <!-- Social links -->
-                <div style="display:flex;gap:32px;">
-                    <a href="https://instagram.com/harsimrankohlimusic" target="_blank"
-                        style="font-family:'Cinzel',serif;font-size:12px;font-weight:400;letter-spacing:0.3em;text-transform:uppercase;color:rgba(212,175,90,0.45);text-decoration:none;transition:color 0.3s;"
-                        onmouseover="this.style.color='#D4AF5A'" onmouseout="this.style.color='rgba(212,175,90,0.45)'">Instagram</a>
-                    <a href="https://youtube.com/@hskschoolofmusic" target="_blank"
-                        style="font-family:'Cinzel',serif;font-size:12px;font-weight:400;letter-spacing:0.3em;text-transform:uppercase;color:rgba(212,175,90,0.45);text-decoration:none;transition:color 0.3s;"
-                        onmouseover="this.style.color='#D4AF5A'" onmouseout="this.style.color='rgba(212,175,90,0.45)'">YouTube</a>
-                    <a href="#"
-                        style="font-family:'Cinzel',serif;font-size:12px;font-weight:400;letter-spacing:0.3em;text-transform:uppercase;color:rgba(212,175,90,0.45);text-decoration:none;transition:color 0.3s;"
-                        onmouseover="this.style.color='#D4AF5A'" onmouseout="this.style.color='rgba(212,175,90,0.45)'">Facebook</a>
+                <div class="footer-social">
+                    <a href="https://instagram.com/harsimrankohlimusic" target="_blank" class="footer-social-link">Instagram</a>
+                    <a href="https://youtube.com/@hskschoolofmusic" target="_blank" class="footer-social-link">YouTube</a>
+                    <a href="#" class="footer-social-link">Facebook</a>
                 </div>
 
                 <!-- Copyright -->
-                <p style="font-family:'Cinzel',serif;font-size:11px;font-weight:400;letter-spacing:0.3em;text-transform:uppercase;color:rgba(248,234,186,0.28);">© 2026 Harsimran Kohli</p>
+                <p class="footer-copy">© 2026 Harsimran Kohli</p>
 
                 <!-- Credit -->
-                <p style="font-family:'Work Sans',sans-serif;font-size:10px;font-style:italic;letter-spacing:0.2em;color:rgba(212,175,90,0.32);">Design by @syedahad</p>
+                <p class="footer-credit">Design by @syedahad</p>
             </div>
         </footer>
     </div>
