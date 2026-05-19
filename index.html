@@ -1110,40 +1110,59 @@
             </div>
         </section>
 
-        <!-- Footer — Ultra Minimal Single Strip -->
-        <footer style="
-            background: #050302;
-            border-top: 1px solid rgba(212,175,90,0.08);
-            padding: 22px 48px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            flex-wrap: wrap;
-            gap: 16px;
-        ">
-            <!-- Logo -->
-            <img src="public/assets/logo/HSK.png" class="premium-logo gold-asset" alt="HSK Logo"
-                style="height: 36px; width: auto; flex-shrink: 0;">
-
-            <!-- Center nav links -->
-            <nav style="
+        <!-- Footer — Corner Bracket Frame -->
+        <footer style="background: #150B06; padding: 40px 60px;">
+            <!-- Outer frame with gold corner brackets -->
+            <div style="
+                border: 1px solid rgba(212,175,90,0.12);
+                padding: 36px 50px;
+                position: relative;
                 display: flex;
-                gap: 32px;
-                flex-wrap: wrap;
-                justify-content: center;
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+                gap: 16px;
             ">
-                <a href="#hero" style="font-family:'Work Sans',sans-serif;font-size:8px;font-weight:300;letter-spacing:0.4em;text-transform:uppercase;color:rgba(212,175,90,0.45);text-decoration:none;transition:color 0.3s;" onmouseover="this.style.color='#D4AF5A'" onmouseout="this.style.color='rgba(212,175,90,0.45)'">Home</a>
-                <a href="#journey" style="font-family:'Work Sans',sans-serif;font-size:8px;font-weight:300;letter-spacing:0.4em;text-transform:uppercase;color:rgba(212,175,90,0.45);text-decoration:none;transition:color 0.3s;" onmouseover="this.style.color='#D4AF5A'" onmouseout="this.style.color='rgba(212,175,90,0.45)'">About</a>
-                <a href="#services" style="font-family:'Work Sans',sans-serif;font-size:8px;font-weight:300;letter-spacing:0.4em;text-transform:uppercase;color:rgba(212,175,90,0.45);text-decoration:none;transition:color 0.3s;" onmouseover="this.style.color='#D4AF5A'" onmouseout="this.style.color='rgba(212,175,90,0.45)'">Services</a>
-                <a href="#contact" style="font-family:'Work Sans',sans-serif;font-size:8px;font-weight:300;letter-spacing:0.4em;text-transform:uppercase;color:rgba(212,175,90,0.45);text-decoration:none;transition:color 0.3s;" onmouseover="this.style.color='#D4AF5A'" onmouseout="this.style.color='rgba(212,175,90,0.45)'">Contact</a>
-                <a href="https://instagram.com/harsimrankohlimusic" target="_blank" style="font-family:'Work Sans',sans-serif;font-size:8px;font-weight:300;letter-spacing:0.4em;text-transform:uppercase;color:rgba(212,175,90,0.45);text-decoration:none;transition:color 0.3s;" onmouseover="this.style.color='#D4AF5A'" onmouseout="this.style.color='rgba(212,175,90,0.45)'">Instagram</a>
-                <a href="https://youtube.com/@hskschoolofmusic" target="_blank" style="font-family:'Work Sans',sans-serif;font-size:8px;font-weight:300;letter-spacing:0.4em;text-transform:uppercase;color:rgba(212,175,90,0.45);text-decoration:none;transition:color 0.3s;" onmouseover="this.style.color='#D4AF5A'" onmouseout="this.style.color='rgba(212,175,90,0.45)'">YouTube</a>
-            </nav>
+                <!-- Corner TL -->
+                <span style="position:absolute;top:-1px;left:-1px;width:20px;height:20px;border-top:2px solid rgba(212,175,90,0.55);border-left:2px solid rgba(212,175,90,0.55);"></span>
+                <!-- Corner TR -->
+                <span style="position:absolute;top:-1px;right:-1px;width:20px;height:20px;border-top:2px solid rgba(212,175,90,0.55);border-right:2px solid rgba(212,175,90,0.55);"></span>
+                <!-- Corner BL -->
+                <span style="position:absolute;bottom:-1px;left:-1px;width:20px;height:20px;border-bottom:2px solid rgba(212,175,90,0.55);border-left:2px solid rgba(212,175,90,0.55);"></span>
+                <!-- Corner BR -->
+                <span style="position:absolute;bottom:-1px;right:-1px;width:20px;height:20px;border-bottom:2px solid rgba(212,175,90,0.55);border-right:2px solid rgba(212,175,90,0.55);"></span>
 
-            <!-- Right: copyright + credit -->
-            <div style="text-align:right;flex-shrink:0;">
-                <span style="font-family:'Work Sans',sans-serif;font-size:8px;letter-spacing:0.35em;text-transform:uppercase;color:rgba(248,234,186,0.28);display:block;margin-bottom:4px;">© 2026 Harsimran Kohli</span>
-                <span style="font-family:'Work Sans',sans-serif;font-size:7.5px;font-style:italic;letter-spacing:0.2em;color:rgba(212,175,90,0.32);">Design by @syedahad</span>
+                <!-- Eyebrow label -->
+                <p style="font-family:'Work Sans',sans-serif;font-size:8px;font-weight:300;letter-spacing:0.5em;text-transform:uppercase;color:rgba(212,175,90,0.5);">Artistic Portfolio</p>
+
+                <!-- Logo image -->
+                <img src="public/assets/logo/HSK.png" class="premium-logo gold-asset" alt="HSK Logo"
+                    style="height: 44px; width: auto;">
+
+                <!-- Divider rule -->
+                <div style="width:180px;height:1px;background:linear-gradient(90deg,transparent,rgba(212,175,90,0.3),transparent);"></div>
+
+                <!-- Genre tagline -->
+                <p style="font-family:'Work Sans',sans-serif;font-size:9px;font-weight:300;letter-spacing:0.45em;text-transform:uppercase;color:rgba(248,234,186,0.38);">Hindustani Classical &nbsp;·&nbsp; Sufi &nbsp;·&nbsp; Bollywood</p>
+
+                <!-- Social links -->
+                <div style="display:flex;gap:32px;">
+                    <a href="https://instagram.com/harsimrankohlimusic" target="_blank"
+                        style="font-family:'Work Sans',sans-serif;font-size:8.5px;font-weight:300;letter-spacing:0.35em;text-transform:uppercase;color:rgba(212,175,90,0.45);text-decoration:none;transition:color 0.3s;"
+                        onmouseover="this.style.color='#D4AF5A'" onmouseout="this.style.color='rgba(212,175,90,0.45)'">Instagram</a>
+                    <a href="https://youtube.com/@hskschoolofmusic" target="_blank"
+                        style="font-family:'Work Sans',sans-serif;font-size:8.5px;font-weight:300;letter-spacing:0.35em;text-transform:uppercase;color:rgba(212,175,90,0.45);text-decoration:none;transition:color 0.3s;"
+                        onmouseover="this.style.color='#D4AF5A'" onmouseout="this.style.color='rgba(212,175,90,0.45)'">YouTube</a>
+                    <a href="#"
+                        style="font-family:'Work Sans',sans-serif;font-size:8.5px;font-weight:300;letter-spacing:0.35em;text-transform:uppercase;color:rgba(212,175,90,0.45);text-decoration:none;transition:color 0.3s;"
+                        onmouseover="this.style.color='#D4AF5A'" onmouseout="this.style.color='rgba(212,175,90,0.45)'">Facebook</a>
+                </div>
+
+                <!-- Copyright -->
+                <p style="font-family:'Work Sans',sans-serif;font-size:8px;letter-spacing:0.35em;text-transform:uppercase;color:rgba(248,234,186,0.28);">© 2026 Harsimran Kohli</p>
+
+                <!-- Credit -->
+                <p style="font-family:'Work Sans',sans-serif;font-size:7.5px;font-style:italic;letter-spacing:0.22em;color:rgba(212,175,90,0.32);">Design by @syedahad</p>
             </div>
         </footer>
     </div>
