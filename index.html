@@ -677,6 +677,27 @@
             pointer-events: none;
             z-index: 1;
         }
+
+        /* ── Footer — Corner Bracket Frame ── */
+        .footer-cbf          { background: #0A0604; padding: 40px 60px; }
+        .footer-cbf-inner    { border: 1px solid rgba(212,175,90,0.12); padding: 36px 50px; position: relative; display: flex; flex-direction: column; align-items: center; text-align: center; gap: 16px; }
+        .footer-social       { display: flex; gap: 32px; flex-wrap: wrap; justify-content: center; }
+        .footer-eyebrow      { font-family:'Cinzel',serif; font-size:11px; font-weight:400; letter-spacing:0.45em; text-transform:uppercase; color:rgba(212,175,90,0.5); }
+        .footer-tagline      { font-family:'Cinzel',serif; font-size:13px; font-weight:400; letter-spacing:0.35em; text-transform:uppercase; color:rgba(248,234,186,0.38); }
+        .footer-social-link  { font-family:'Cinzel',serif; font-size:12px; font-weight:400; letter-spacing:0.3em; text-transform:uppercase; color:rgba(212,175,90,0.45); text-decoration:none; transition:color 0.3s; }
+        .footer-social-link:hover { color:#D4AF5A; }
+        .footer-copy         { font-family:'Cinzel',serif; font-size:11px; font-weight:400; letter-spacing:0.3em; text-transform:uppercase; color:rgba(248,234,186,0.28); }
+        .footer-credit       { font-family:'Work Sans',sans-serif; font-size:10px; font-style:italic; letter-spacing:0.2em; color:rgba(212,175,90,0.32); }
+        @media (max-width: 640px) {
+            .footer-cbf          { padding: 20px 14px; }
+            .footer-cbf-inner    { padding: 28px 18px; gap: 14px; }
+            .footer-eyebrow      { font-size: 9px; letter-spacing: 0.25em; }
+            .footer-tagline      { font-size: 10px; letter-spacing: 0.12em; }
+            .footer-social       { gap: 18px; }
+            .footer-social-link  { font-size: 10px; letter-spacing: 0.18em; }
+            .footer-copy         { font-size: 9px; letter-spacing: 0.18em; }
+            .footer-credit       { font-size: 8.5px; }
+        }
     </style>
 </head>
 
@@ -1117,27 +1138,6 @@
         </section>
 
         <!-- Footer — Corner Bracket Frame -->
-        <style>
-            .footer-cbf          { background: #0A0604; padding: 40px 60px; }
-            .footer-cbf-inner    { border: 1px solid rgba(212,175,90,0.12); padding: 36px 50px; position: relative; display: flex; flex-direction: column; align-items: center; text-align: center; gap: 16px; }
-            .footer-social       { display: flex; gap: 32px; flex-wrap: wrap; justify-content: center; }
-            .footer-eyebrow      { font-family:'Cinzel',serif; font-size:11px; font-weight:400; letter-spacing:0.45em; text-transform:uppercase; color:rgba(212,175,90,0.5); }
-            .footer-tagline      { font-family:'Cinzel',serif; font-size:13px; font-weight:400; letter-spacing:0.35em; text-transform:uppercase; color:rgba(248,234,186,0.38); }
-            .footer-social-link  { font-family:'Cinzel',serif; font-size:12px; font-weight:400; letter-spacing:0.3em; text-transform:uppercase; color:rgba(212,175,90,0.45); text-decoration:none; transition:color 0.3s; }
-            .footer-social-link:hover { color:#D4AF5A; }
-            .footer-copy         { font-family:'Cinzel',serif; font-size:11px; font-weight:400; letter-spacing:0.3em; text-transform:uppercase; color:rgba(248,234,186,0.28); }
-            .footer-credit       { font-family:'Work Sans',sans-serif; font-size:10px; font-style:italic; letter-spacing:0.2em; color:rgba(212,175,90,0.32); }
-            @media (max-width: 640px) {
-                .footer-cbf          { padding: 20px 14px; }
-                .footer-cbf-inner    { padding: 28px 18px; gap: 14px; }
-                .footer-eyebrow      { font-size: 9px; letter-spacing: 0.25em; }
-                .footer-tagline      { font-size: 10px; letter-spacing: 0.12em; }
-                .footer-social       { gap: 18px; }
-                .footer-social-link  { font-size: 10px; letter-spacing: 0.18em; }
-                .footer-copy         { font-size: 9px; letter-spacing: 0.18em; }
-                .footer-credit       { font-size: 8.5px; }
-            }
-        </style>
         <footer class="footer-cbf">
             <!-- Outer frame with gold corner brackets -->
             <div class="footer-cbf-inner">
